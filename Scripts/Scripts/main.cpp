@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Script.h"
+#include "Scenario.h"
 
 using namespace std;
 
@@ -8,9 +8,10 @@ using namespace std;
 
 void main()
 {
-    Script script("MonoBehaviour.txt");
-    script.load();  
-    cout << script.toString() << endl;
+    Scenario scenario("Script.txt");
+    scenario.load();  
+    scenario.run();
+    cout << scenario.toString() << endl;
 
 }
 

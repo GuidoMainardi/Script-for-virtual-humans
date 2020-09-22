@@ -16,6 +16,7 @@ class Command
 private:
 	Opcode opcode;
 	Instruction instruction;
+	int quantity;
 	string place;
 	string to_String;
 
@@ -24,6 +25,7 @@ public:
 	bool iequals(const string& a, const string& b);
 	Opcode getOpcode() { return opcode; }
 	Instruction getInstruction() { return instruction; }
+	int getQuantity() { return quantity; }
 	string getPlace() { return place; }
 	string toString() { return to_String; }
 };

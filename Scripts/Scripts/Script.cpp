@@ -5,12 +5,11 @@ Script::Script(string fileName)
 	fName = fileName;
     pc = 0;
     to_String = "";
-
+    load();
 }
 
 void Script::load()
 {
-    
     ifstream inFile(fName);
 
     if (!inFile) {
@@ -23,7 +22,7 @@ void Script::load()
         Script::text.push_back(command);
         to_String += command.toString() + "\n";
     }
-        
+    
     inFile.close();
 }
 

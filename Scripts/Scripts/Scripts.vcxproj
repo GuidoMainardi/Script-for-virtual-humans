@@ -141,12 +141,14 @@
   <ItemGroup>
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Scenario.cpp" />
     <ClCompile Include="Script.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Command.h" />
     <ClInclude Include="Instruction.h" />
     <ClInclude Include="Opcode.h" />
+    <ClInclude Include="Scenario.h" />
     <ClInclude Include="Script.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

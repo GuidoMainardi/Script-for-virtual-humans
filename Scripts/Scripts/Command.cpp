@@ -1,8 +1,28 @@
 #include "Command.h"
 
 Command::Command(string command){
-	
+
 	to_String = "";
+
+	//Create 10 MonoBehaviour
+	if (iequals(command.substr(0, 6), "Create")) {
+	
+		opcode = Opcode::CREATE;
+		to_String += "Create ";
+
+		string number = "";
+		int i;
+		for (i = 7; command.at(i) != ' '; i++) {
+			number += command.at(i);
+		}
+		quantity = stoi(number);
+		to_String += number + " ";
+
+		place = command.substr(i + 1);
+		to_String += place;
+	
+	}
+	
 
 	//Start
 	if(iequals(command.substr (0,5), "Start")){
