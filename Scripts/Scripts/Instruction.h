@@ -2,7 +2,7 @@
 #define INSTRUCTION_H
 
 
-enum Instruction{ 
+enum class Instruction{ 
 
     CLAPS,
     DANCE,

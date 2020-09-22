@@ -2,7 +2,7 @@
 #define OPCODE_H
 
 
-enum Opcode {
+enum class Opcode {
 
      CREATE, 
      START,
