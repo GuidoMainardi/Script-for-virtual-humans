@@ -4,12 +4,7 @@
 
 enum class Opcode {
 
-     CREATE, 
-     START,
-     BEGIN,
-     STOP,
      PLAY,
-     END,
      GO
      
 };

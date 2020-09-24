@@ -6,13 +6,12 @@ using namespace std;
 
 
 
-void main()
+int main()
 {
     Scenario scenario("Script.txt");
     scenario.load();  
     scenario.run();
-    cout << scenario.toString() << endl;
-
+    return 0;
 }
 
 

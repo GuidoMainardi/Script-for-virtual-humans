@@ -6,8 +6,6 @@ enum class Instruction{
 
     CLAPS,
     DANCE,
-    LOOP,
-    IN,
     TO
 };
 

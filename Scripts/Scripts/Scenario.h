@@ -5,8 +5,11 @@
 #include <vector>
 #include <iomanip>
 #include <fstream>
-#include "Command.h"
+#include <Windows.h>
+#include <map>
+#include "ScriptCommand.h"
 #include "Script.h"
+#include "Operation.h"
 
 using namespace std;
 
@@ -16,8 +19,9 @@ class Scenario
 private:
     string fName;
     int pc;
-    vector<Command> text;
-    vector<Script> Agents;
+    vector<ScriptCommand> text;
+    map<string, Script> Scripts;
+    map<int, string> Agents;
     string to_String;
 
 public:

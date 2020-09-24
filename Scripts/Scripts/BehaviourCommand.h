@@ -1,17 +1,16 @@
-#ifndef COMMAND_H
-#define COMMAND_H
+#ifndef BEHAVIOURCOMMAND_H
+#define BEHAVIOURCOMMAND_H
 #include "Instruction.h"
 #include "Opcode.h"
 #include <string>
 #include <iostream>
-#include <string>
 #include <algorithm>
 
 
 using namespace std;
 
 
-class Command
+class BehaviourCommand
 {
 private:
 	Opcode opcode;
@@ -21,7 +20,7 @@ private:
 	string to_String;
 
 public:
-	Command(string command);
+	BehaviourCommand(string command);
 	bool iequals(const string& a, const string& b);
 	Opcode getOpcode() { return opcode; }
 	Instruction getInstruction() { return instruction; }

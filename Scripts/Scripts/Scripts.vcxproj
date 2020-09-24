@@ -139,17 +139,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Command.cpp" />
+    <ClCompile Include="BehaviourCommand.cpp" />
+    <ClCompile Include="ScriptCommand.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scenario.cpp" />
     <ClCompile Include="Script.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Command.h" />
+    <ClInclude Include="BehaviourCommand.h" />
+    <ClInclude Include="Operation.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="ScriptCommand.h" />
     <ClInclude Include="Instruction.h" />
     <ClInclude Include="Opcode.h" />
     <ClInclude Include="Scenario.h" />
     <ClInclude Include="Script.h" />
+    <ClInclude Include="Target.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Scripts.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

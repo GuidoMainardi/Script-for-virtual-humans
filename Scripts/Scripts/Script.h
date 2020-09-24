@@ -5,7 +5,7 @@
 #include <vector>
 #include <iomanip>
 #include <fstream>
-#include "Command.h"
+#include "BehaviourCommand.h"
 
 using namespace std;
 
@@ -15,7 +15,7 @@ class Script
 private:
     string fName;
     int pc;
-    vector<Command> text;
+    vector<BehaviourCommand> text;
     string to_String;
 
 public:

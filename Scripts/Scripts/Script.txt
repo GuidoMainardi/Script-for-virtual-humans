@@ -1,2 +1,5 @@
-Create 1 MonoBehaviour
-Create 1 SimpleBehaviour
+Agent 1 time 3 run MonoBehaviour
+Agent 2 time 5 run SimpleBehaviour
+Agent 1 time 7 run SimpleBehaviour
+Agent 2 time 7 stop
+Agent 1 time 10 stop
