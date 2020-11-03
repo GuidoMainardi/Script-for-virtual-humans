@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\NewDemo.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{7F42B0F2-A422-4B81-84BE-7BF0BF298DCC}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\NewDemo.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\NewDemoEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{33A76773-495E-44DF-BB7B-D6A97D618412}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\NewDemo">
+      <UniqueIdentifier>{FFD99CA6-91B4-4C77-9519-D85DFB5AA2BF}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\NewDemo\BehaviourCommand.cpp">
+      <Filter>Source\NewDemo</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\NewDemo\BehaviourCommand.h">
+      <Filter>Source\NewDemo</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\NewDemo\Cubo.cpp">
+      <Filter>Source\NewDemo</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\NewDemo\Cubo.h">
+      <Filter>Source\NewDemo</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\NewDemo\DemoController.cpp">
+      <Filter>Source\NewDemo</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\NewDemo\DemoController.h">
+      <Filter>Source\NewDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\NewDemo\Instruction.h">
+      <Filter>Source\NewDemo</Filter>
+    </ClInclude>
+    <None Include="..\..\Source\NewDemo\NewDemo.Build.cs">
+      <Filter>Source\NewDemo</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\NewDemo\NewDemo.cpp">
+      <Filter>Source\NewDemo</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\NewDemo\NewDemo.h">
+      <Filter>Source\NewDemo</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\NewDemo\NewDemoGameModeBase.cpp">
+      <Filter>Source\NewDemo</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\NewDemo\NewDemoGameModeBase.h">
+      <Filter>Source\NewDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\NewDemo\Opcode.h">
+      <Filter>Source\NewDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\NewDemo\Operation.h">
+      <Filter>Source\NewDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\NewDemo\Position.h">
+      <Filter>Source\NewDemo</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\NewDemo\Scenario.cpp">
+      <Filter>Source\NewDemo</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\NewDemo\Scenario.h">
+      <Filter>Source\NewDemo</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\NewDemo\Script.cpp">
+      <Filter>Source\NewDemo</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\NewDemo\Script.h">
+      <Filter>Source\NewDemo</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\NewDemo\ScriptCommand.cpp">
+      <Filter>Source\NewDemo</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\NewDemo\ScriptCommand.h">
+      <Filter>Source\NewDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\NewDemo\Target.h">
+      <Filter>Source\NewDemo</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\NewDemo\Senario.cpp">
+      <Filter>Source\NewDemo</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\NewDemo\Senario.h">
+      <Filter>Source\NewDemo</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

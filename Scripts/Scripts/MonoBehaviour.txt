@@ -1,3 +1,0 @@
-go to (2,3,4)
-Play Claps
-go to (1,2,3)

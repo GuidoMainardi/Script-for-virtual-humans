@@ -1,0 +1,3 @@
+C:\Users\guido\Documents\Unreal Projects\NewDemo\Intermediate\Build\Win64\UE4Editor\Development\NewDemo\Definitions.NewDemo.h
+C:\Users\guido\Documents\Unreal Projects\NewDemo\Source\NewDemo\Senario.h
+C:\Users\guido\Documents\Unreal Projects\NewDemo\Intermediate\Build\Win64\UE4Editor\Inc\NewDemo\Senario.generated.h
