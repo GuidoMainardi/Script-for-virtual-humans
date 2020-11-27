@@ -1,0 +1,16 @@
+C:\Users\guido\Documents\sextoSemestre\Bolsa IC\Soraia\BioCrowdsUE 4.24\Intermediate\Build\Win64\UE4Editor\Development\BioCrowdsUE\Definitions.BioCrowdsUE.h
+C:\Users\guido\Documents\sextoSemestre\Bolsa IC\Soraia\BioCrowdsUE 4.24\Source\BioCrowdsUE\src\Script.h
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\INCLUDE\string
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\INCLUDE\cctype
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\INCLUDE\iomanip
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\INCLUDE\xlocmon
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\INCLUDE\xloctime
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\INCLUDE\ctime
+C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt\time.h
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\INCLUDE\fstream
+C:\Users\guido\Documents\sextoSemestre\Bolsa IC\Soraia\BioCrowdsUE 4.24\Source\BioCrowdsUE\src\BehaviourCommand.h
+C:\Users\guido\Documents\sextoSemestre\Bolsa IC\Soraia\BioCrowdsUE 4.24\Source\BioCrowdsUE\src\Instruction.h
+C:\Users\guido\Documents\sextoSemestre\Bolsa IC\Soraia\BioCrowdsUE 4.24\Source\BioCrowdsUE\src\Position.h
+C:\Users\guido\Documents\sextoSemestre\Bolsa IC\Soraia\BioCrowdsUE 4.24\Source\BioCrowdsUE\src\Opcode.h
+C:\Users\guido\Documents\sextoSemestre\Bolsa IC\Soraia\BioCrowdsUE 4.24\Source\BioCrowdsUE\src\FIleReader.h
+C:\Users\guido\Documents\sextoSemestre\Bolsa IC\Soraia\BioCrowdsUE 4.24\Intermediate\Build\Win64\UE4Editor\Inc\BioCrowdsUE\FIleReader.generated.h

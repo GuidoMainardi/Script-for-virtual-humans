@@ -1,0 +1,5 @@
+C:\Users\guido\Documents\sextoSemestre\Bolsa IC\Soraia\BioCrowdsUE 4.24\Intermediate\Build\Win64\UE4Editor\Development\BioCrowdsUE\Definitions.BioCrowdsUE.h
+D:\Jogos\EpicGames\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
+D:\Jogos\EpicGames\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
+C:\Users\guido\Documents\sextoSemestre\Bolsa IC\Soraia\BioCrowdsUE 4.24\Source\BioCrowdsUE/src/FIleReader.h
+C:\Users\guido\Documents\sextoSemestre\Bolsa IC\Soraia\BioCrowdsUE 4.24\Intermediate\Build\Win64\UE4Editor\Inc\BioCrowdsUE\FIleReader.generated.h

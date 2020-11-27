@@ -1,6 +1,0 @@
-C:\Users\guido\Documents\Unreal Projects\NewDemo\Intermediate\Build\Win64\UE4Editor\Development\NewDemo\Definitions.NewDemo.h
-C:\Users\guido\Documents\Unreal Projects\NewDemo\Source\NewDemo\ScriptCommand.h
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\INCLUDE\string
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\INCLUDE\cctype
-C:\Users\guido\Documents\Unreal Projects\NewDemo\Source\NewDemo\Target.h
-C:\Users\guido\Documents\Unreal Projects\NewDemo\Source\NewDemo\Operation.h

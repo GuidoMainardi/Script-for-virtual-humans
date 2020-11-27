@@ -1,0 +1,3 @@
+C:\Users\guido\Documents\sextoSemestre\Bolsa IC\Soraia\BioCrowdsUE 4.24\Intermediate\Build\Win64\UE4Editor\Development\BioCrowdsUE\Definitions.BioCrowdsUE.h
+C:\Users\guido\Documents\sextoSemestre\Bolsa IC\Soraia\BioCrowdsUE 4.24\Source\BioCrowdsUE\src\FIleReader.h
+C:\Users\guido\Documents\sextoSemestre\Bolsa IC\Soraia\BioCrowdsUE 4.24\Intermediate\Build\Win64\UE4Editor\Inc\BioCrowdsUE\FIleReader.generated.h
