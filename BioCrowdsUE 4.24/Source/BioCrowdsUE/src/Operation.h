@@ -3,6 +3,7 @@
 
 enum class Operation {
 
+	CREATE,
 	STOP,
 	RUN
 

@@ -5,7 +5,7 @@
 
 bool UFIleReader::LoadTxt(FString FileNameA, FString& SaveTextA)
 {
-    UE_LOG(LogTemp, Warning, TEXT("%s"), *FPaths::GameSourceDir());
+    //UE_LOG(LogTemp, Warning, TEXT("%s"), *FPaths::GameSourceDir());
     return FFileHelper::LoadFileToString(SaveTextA, *(FPaths::GameSourceDir() + "..\\Scripts\\" + FileNameA));
 }
 

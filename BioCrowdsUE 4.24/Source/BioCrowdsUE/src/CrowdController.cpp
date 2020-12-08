@@ -261,6 +261,8 @@ void ACrowdController::BeginPlay() {
     //numAgents = 2;
     numAgents = scene.load();
     tempo = 0.0f;
+    int line = 0;
+    int LocalNumberOfAgents = 0;
     //set up the space with markers
     CreateSamples();
     BuildKDT();
@@ -276,27 +278,49 @@ void ACrowdController::BeginPlay() {
     //find all regions and store
     TArray<AActor*> regions;
     UGameplayStatics::GetAllActorsOfClass(GetWorld(), ARegionBox::StaticClass(), regions);
+    UE_LOG(LogTemp, Warning, TEXT("%d"), regions.Num());
+    FString RegionName;
     for (int i = 0; i < regions.Num(); i++) {
         ARegionBox* r = Cast<ARegionBox>(regions[i]);
         regsVacant.Add(r);
         //UStaticMesh* us = r->MyPtr->GetStaticMesh();
         //r->box = us->GetBoundingBox();
         //r->box = r->MyPtr->GetComponentBounds();
-
         const FTransform world = r->MyPtr->GetComponentTransform();
         FBoxSphereBounds bsb = r->MyPtr->CalcBounds(world);
         r->box = bsb.GetBox();
-
+        // store region in a map
+        RegionName = regions[i]->GetName();
+        //UE_LOG(LogTemp, Warning, TEXT("%s"), *RegionName);
+        Locais.Add(RegionName, i);
+        //Locais[regions[i]->GetName()] = i;
+        //Locais.insert(regions[i]->GetName(), i);
+        //UE_LOG(LogTemp, Warning, TEXT("%s"), *regions[i]->GetName());
+        //UE_LOG(LogTemp, Warning, TEXT("%d"), Locais[RegionName]);
+        //UE_LOG(LogTemp, Warning, TEXT("---------------"));
     }
+    //UE_LOG(LogTemp, Warning, TEXT("%d"), Locais.Num());
+    //UE_LOG(LogTemp, Warning, TEXT("------------------------------------------"));
+    //UE_LOG(LogTemp, Warning, TEXT("%d"), regsVacant.Num());
+    //UE_LOG(LogTemp, Warning, TEXT("------------------------------------------"));
+    //UE_LOG(LogTemp, Warning, TEXT("%s"), *regions[0]->GetName());
     /// Carrega Script e configura o numero de agentes, salvar em numAgents
-    UE_LOG(LogTemp, Warning, TEXT("%d"), numAgents);
+    //UE_LOG(LogTemp, Warning, TEXT("%d"), numAgents);
     //UE_LOG(LogTemp, Warning, TEXT("%d"), scene.load());
     int actualNumAgents = 0; // numero de agentes
     //random goal setup
     if (regsVacant.Num() != 0) {
         for (int i = 0; i < numAgents; i++) {
             //pick quad
-            int idx = FMath::RandRange(0, regsVacant.Num() - 1);
+            if (LocalNumberOfAgents >= scene.text[line].getNumberOf()) {
+                LocalNumberOfAgents = 0;
+                line++;
+            }
+            LocalNumberOfAgents++;
+            //int idx = FMath::RandRange(0, regsVacant.Num() - 1);
+            //UE_LOG(LogTemp, Warning, TEXT("Quadrante inicial: %d"), Locais[scene.text[line].getRegionName().c_str()]);
+            int idx = Locais[scene.text[line].getRegionName().c_str()];
+            //UE_LOG(LogTemp, Warning, TEXT("Quadrante inicial: %s"), *regsVacant[idx]->GetName());
             FBox quad = regsVacant[idx]->box;
             regsVacant[idx]->numAgents++;
             //GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("NUM AGENTS = %i"), regsVacant[idx]->numAgents));
@@ -327,10 +351,10 @@ void ACrowdController::BeginPlay() {
                 agent->reg = regsVacant[idx];
 
                 //if around percentage, remove
-                if (regsVacant[idx]->numAgents >= regsVacant[idx]->percent * numAgents) {
-                    regsFull.Add(regsVacant[idx]);
-                    regsVacant.RemoveAt(idx);
-                }
+                //if (regsVacant[idx]->numAgents >= regsVacant[idx]->percent * numAgents) {
+                    //regsFull.Add(regsVacant[idx]);
+                    //regsVacant.RemoveAt(idx);
+                //}
 
                 agents.Add(agent);
                 actualNumAgents++;
@@ -374,10 +398,10 @@ void ACrowdController::BeginPlay() {
                 agent->reg->numAgents--;
 
                 //if around percentage, remove from vacant
-                if (r->numAgents >= r->percent * numAgents) {
-                    regsFull.Add(regsVacant[idx]);
-                    regsVacant.RemoveAt(idx);
-                }
+                //if (r->numAgents >= r->percent * numAgents) {
+                  //  regsFull.Add(regsVacant[idx]);
+                   // regsVacant.RemoveAt(idx);
+                //}
 
                 if (regsFull.Contains(agent->reg)) {
                     regsVacant.Add(agent->reg);
@@ -536,34 +560,70 @@ void ACrowdController::Tick(float DeltaTime) {
     UNavigationSystemV1* navSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
     ARecastNavMesh* navMesh = navSys ? Cast<ARecastNavMesh>(navSys->GetDefaultNavDataInstance()) : nullptr;
     tempo += DeltaTime;
+
     for (auto c : scene.text) {
         if (c.getTime() == int(tempo)) {
             if (c.getOperation() == Operation::RUN) {
-                for (BehaviourCommand inst : scene.Scripts.find(c.getBehaviour())->second.text) {
-                    if (inst.getOpcode() == Opcode::GO) {
-                        auto local = inst.getPlace();
-                        FVector vaipara(local.getX(), local.getY(), local.getZ());
-                        AAgent* a = agents[c.getTargetID() - 1];
-                        a->goal = vaipara;
-                        a->goal.Z += 90;
-
-                        a->finalGoal = a->goal;
-
-                        UNavigationPath* p = navSys->FindPathToLocationSynchronously(GetWorld(), a->GetActorLocation(), a->goal, NULL);
-                        TArray <FVector> path = p->PathPoints;
-                        a->path = path;
-                        a->goal = path[0];
-                        a->goal.Z += 90;
-                        a->path.RemoveAt(0);
-                        agents[c.getTargetID() - 1]->goal = vaipara;
-                    }
-                }
+                agents[c.getTargetID() - 1]->nowPlaying = FString(c.getBehaviour().c_str());
+                agents[c.getTargetID() - 1]->hasSomethingToPlay = true;
+                agents[c.getTargetID() - 1]->pc = 0;
             }
             if (c.getOperation() == Operation::STOP) {
                 agents[c.getTargetID() - 1]->goal = agents[c.getTargetID() - 1]->GetActorLocation();
             }
         }
-        if (tempo > 10) { tempo = 0; }
+    }
+    for (AAgent* a : agents) {
+        if (!a->inAction && a->pc < scene.Scripts.find(string(TCHAR_TO_UTF8(*a->nowPlaying)))->second.text.size() && a->hasSomethingToPlay) {
+            BehaviourCommand bc = scene.Scripts.find(string(TCHAR_TO_UTF8(*a->nowPlaying)))->second.text[a->pc];
+            a->inAction = true;
+            if (bc.getOpcode() == Opcode::GO) {
+                string local = bc.getDestiny();
+                FString regiao(local.c_str());
+                //UE_LOG(LogTemp, Warning, TEXT("%d"), a->pc);
+                //UE_LOG(LogTemp, Warning, TEXT("%s"), *regiao);
+                //UE_LOG(LogTemp, Warning, TEXT("-----------------------------"));
+                //UE_LOG(LogTemp, Warning, TEXT("%d"), Locais["Quarto"]);
+                //int teste = Locais.Contains(regiao);
+                //UE_LOG(LogTemp, Warning, TEXT("teste: %d"), teste);
+                //UE_LOG(LogTemp, Warning, TEXT("tamanho: %d"), regiao.Len());
+                int idx = Locais[regiao];
+                //UE_LOG(LogTemp, Warning, TEXT("%d"), idx);
+                FBox quad = regsVacant[idx]->box;
+                FNavLocation loc;
+                FVector center = quad.GetCenter();
+                float dist1 = FVector::Distance(center, FVector(center.X, quad.Max.Y, center.Z));
+                float dist2 = FVector::Distance(center, FVector(quad.Min.X, center.Y, center.Z));
+                navMesh->GetRandomPointInNavigableRadius(center, FMath::Min(dist1, dist2), loc);
+
+                //FVector vaipara(local.getX(), local.getY(), local.getZ());
+                FVector vaipara(loc.Location.X, loc.Location.Y, loc.Location.Z);
+                a->goal = vaipara;
+                a->goal.Z += 90;
+
+                a->finalGoal = a->goal;
+
+                UNavigationPath* p = navSys->FindPathToLocationSynchronously(GetWorld(), a->GetActorLocation(), a->goal, NULL);
+                TArray <FVector> path = p->PathPoints;
+                a->path = path;
+                a->goal = path[0];
+                a->goal.Z += 90;
+                a->path.RemoveAt(0);
+            }
+            if (bc.getOpcode() == Opcode::PLAY) {
+
+            }
+        }
+        if (a->pc >= scene.Scripts.find(string(TCHAR_TO_UTF8(*a->nowPlaying)))->second.text.size() && !a->inAction) {
+            a->hasSomethingToPlay = false;
+            a->pc = 0;
+        }
+        FVector vel = a->GetVelocity();
+        float dist = FVector::Distance(a->GetActorLocation(), a->finalGoal);
+        if (a->inAction && dist < 91) {
+            a->inAction = false;
+            a->pc++;
+        }
     }
     //Update goals
     //gather agents done moving
@@ -656,10 +716,10 @@ void ACrowdController::Tick(float DeltaTime) {
                         a->reg->numAgents--;
 
                         //if agent's last reg was full
-                        if (regsFull.Contains(a->reg)) {
-                            regsVacant.Add(a->reg);
-                            regsFull.Remove(a->reg);
-                        }
+                       // if (regsFull.Contains(a->reg)) {
+                        //    regsVacant.Add(a->reg);
+                        //    regsFull.Remove(a->reg);
+                       // }
 
                         a->reg = r;
                     } else {
@@ -672,10 +732,10 @@ void ACrowdController::Tick(float DeltaTime) {
                         a->reg->numAgents--;
 
                         //if around percentage, remove from vacant
-                        if (r->numAgents >= r->percent * numAgents) {
-                            regsFull.Add(regsVacant[idx]);
-                            regsVacant.RemoveAt(idx);
-                        }
+                        //if (r->numAgents >= r->percent * numAgents) {
+                        //    regsFull.Add(regsVacant[idx]);
+                         //   regsVacant.RemoveAt(idx);
+                       // }
 
                         if (regsFull.Contains(a->reg)) {
                             regsVacant.Add(a->reg);

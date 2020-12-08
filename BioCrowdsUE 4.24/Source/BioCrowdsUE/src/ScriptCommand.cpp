@@ -7,7 +7,7 @@ ScriptCommand::ScriptCommand(string command) {
 		int i = 6;
 		target = Target::AGENT;
 		to_String += "Agent ";
-		
+
 		//X
 		target_id = getnumber(&i, command);
 		to_String += to_string(target_id) + " ";
@@ -24,6 +24,8 @@ ScriptCommand::ScriptCommand(string command) {
 				to_String += "run ";
 
 				behaviour = command.substr(i);
+				
+
 				to_String += behaviour;
 			} // stop
 			else if (iequals(command.substr(i, 4), "stop")) {
@@ -31,6 +33,22 @@ ScriptCommand::ScriptCommand(string command) {
 				op = Operation::STOP;
 				to_String += "Stop ";
 			}
+		}
+	}
+	// Create X Agent in region
+	if (iequals(command.substr(0, 6), "Create")) {
+		int i = 7;
+		op = Operation::CREATE;
+
+		// X
+		numberOf = getnumber(&i, command);
+
+		// Agent
+		if (iequals(command.substr(i, 5), "Agent")) {
+			target = Target::AGENT;
+			// In region
+			i += 9;
+			RegionName = command.substr(i);
 		}
 	}
 }

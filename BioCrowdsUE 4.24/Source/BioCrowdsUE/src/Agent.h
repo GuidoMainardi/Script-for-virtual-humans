@@ -28,9 +28,9 @@ public:
 	// Sets default values for this character's properties
     AAgent();
     //AAgent(FVector goal, float maxV, float radius, TArray<BMarker*> markers);
-    
+
     class USkeletalMeshComponent* MySkeleton;
-    
+
     //Biocrowds
     void init(FVector goal, float maxV, float radius, float duration, TSubclassOf<UUserWidget> wbpr);
     FVector finalGoal;
@@ -41,34 +41,38 @@ public:
     TArray<BMarker*> markers;
     TArray<FVector> path;
     TArray<AMarkerVis*> mVis;
-    
+
     //Behavior
     ATextRenderActor* text;
     FString activity;
-    
+
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Behavior)
     int ticks = 0;
-    
+
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Behavior)
     int duration = 200;
-    
+
     TSubclassOf<UUserWidget> WidgetBPRef;
-    
+
     UPROPERTY(meta = (AgentMenu))
     class UButton* ShowGoal;
-    
+
     UUserWidget* Menu;
-    
+
     //Visuals
     bool showGoal;
     bool showMarkers;
-    
+    // Scripts
+    bool inAction = false;
+    FString nowPlaying = "";
+    int pc = 0;
+    bool hasSomethingToPlay = false;
     //Region* reg;
     ARegionBox* reg;
 
     UFUNCTION()
     void OnSelected(AActor* TouchedActor, FKey ButtonPressed);
-    
+
     UFUNCTION()
     void toggleGoal() {
         showGoal = !showGoal;

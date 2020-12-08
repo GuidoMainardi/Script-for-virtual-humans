@@ -15,7 +15,9 @@ private:
 	int target_id;
 	Operation op;
 	int time;
+	int numberOf;
 	string behaviour;
+	string RegionName;
 	string to_String;
 public:
 	ScriptCommand(string command);
@@ -25,6 +27,8 @@ public:
 	int getTargetID() { return target_id; }
 	Operation getOperation() { return op; }
 	int getTime() { return time; }
+	int getNumberOf() { return numberOf; }
+	string getRegionName() { return RegionName; }
 	string getBehaviour() { return behaviour; }
 	string toString() { return to_String; }
 };

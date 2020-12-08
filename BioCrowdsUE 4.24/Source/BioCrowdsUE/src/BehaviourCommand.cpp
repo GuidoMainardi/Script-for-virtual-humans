@@ -15,7 +15,11 @@ BehaviourCommand::BehaviourCommand(string command){
 
 			instruction = Instruction::TO;
 			to_String += "To ";
-			place = getnumber(7, command);
+			//place = getnumber(7, command);
+			destiny = command.substr(6);
+			if (destiny[destiny.size() - 1] == '\r' || destiny[destiny.size() - 1] == '\n') {
+				destiny = destiny.substr(0, destiny.size() - 1);
+			}
 			to_String += place.tostring();
 		}
 	}

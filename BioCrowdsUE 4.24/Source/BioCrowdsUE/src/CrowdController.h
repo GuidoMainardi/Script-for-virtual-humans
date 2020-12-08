@@ -3,6 +3,7 @@
 #pragma once
 
 #include "sampler.h"
+#include <map>
 #include "kdtree.h"
 #include "Agent.h"
 #include "AIController.h"
@@ -46,6 +47,7 @@ public:
     //TArray<Region*> regs;
     TArray<ARegionBox*> regsVacant;
     TArray<ARegionBox*> regsFull;
+    TMap<FString, int> Locais;
     Scenario scene;
     float tempo;
     //TArray<AAIController*> aic; //faster than getting controller each time? make sure matches up

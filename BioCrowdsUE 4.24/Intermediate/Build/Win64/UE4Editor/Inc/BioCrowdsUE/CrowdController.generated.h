@@ -13,10 +13,10 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define BIOCROWDSUE_CrowdController_generated_h
 
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_23_SPARSE_DATA
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_23_RPC_WRAPPERS
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_23_RPC_WRAPPERS_NO_PURE_DECLS
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_23_INCLASS_NO_PURE_DECLS \
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_24_SPARSE_DATA
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_24_RPC_WRAPPERS
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_24_RPC_WRAPPERS_NO_PURE_DECLS
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_24_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesACrowdController(); \
 	friend struct Z_Construct_UClass_ACrowdController_Statics; \
@@ -25,7 +25,7 @@ public: \
 	DECLARE_SERIALIZER(ACrowdController)
 
 
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_23_INCLASS \
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_24_INCLASS \
 private: \
 	static void StaticRegisterNativesACrowdController(); \
 	friend struct Z_Construct_UClass_ACrowdController_Statics; \
@@ -34,7 +34,7 @@ public: \
 	DECLARE_SERIALIZER(ACrowdController)
 
 
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_23_STANDARD_CONSTRUCTORS \
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_24_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ACrowdController(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ACrowdController) \
@@ -47,7 +47,7 @@ private: \
 public:
 
 
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_23_ENHANCED_CONSTRUCTORS \
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_24_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ACrowdController(ACrowdController&&); \
@@ -58,28 +58,28 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ACrowdController); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ACrowdController)
 
 
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_23_PRIVATE_PROPERTY_OFFSET
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_21_PROLOG
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_23_GENERATED_BODY_LEGACY \
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_24_PRIVATE_PROPERTY_OFFSET
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_22_PROLOG
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_24_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_23_PRIVATE_PROPERTY_OFFSET \
-	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_23_SPARSE_DATA \
-	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_23_RPC_WRAPPERS \
-	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_23_INCLASS \
-	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_23_STANDARD_CONSTRUCTORS \
+	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_24_PRIVATE_PROPERTY_OFFSET \
+	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_24_SPARSE_DATA \
+	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_24_RPC_WRAPPERS \
+	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_24_INCLASS \
+	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_24_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_23_GENERATED_BODY \
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_24_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_23_PRIVATE_PROPERTY_OFFSET \
-	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_23_SPARSE_DATA \
-	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_23_RPC_WRAPPERS_NO_PURE_DECLS \
-	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_23_INCLASS_NO_PURE_DECLS \
-	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_23_ENHANCED_CONSTRUCTORS \
+	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_24_PRIVATE_PROPERTY_OFFSET \
+	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_24_SPARSE_DATA \
+	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_24_RPC_WRAPPERS_NO_PURE_DECLS \
+	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_24_INCLASS_NO_PURE_DECLS \
+	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_CrowdController_h_24_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

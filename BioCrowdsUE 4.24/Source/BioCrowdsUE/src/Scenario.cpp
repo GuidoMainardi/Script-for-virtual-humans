@@ -32,37 +32,15 @@ int Scenario::load()
             Script temp(c.getBehaviour() + ".txt");
             Scripts.insert({ c.getBehaviour(), temp });
         }
-        if (c.getTargetID() > max) {
-            max = c.getTargetID();
+        if (c.getOperation() == Operation::CREATE) {
+            max += c.getNumberOf();
         }
     }
+    //UE_LOG(LogTemp, Warning, TEXT("%d"), max);
     return max;
 
 }
-/*
-void Scenario::runnnnnn() {
-    int time = 0;
-    cout << "start of the day" << endl;
-    while (true) {
-        cout << "time: " << time << endl;
 
-        for (ScriptCommand c : text) {
-            if (c.getTime() == time) {
-                if (c.getOperation() == Operation::RUN) {
-                    cout << "Agent " << c.getTargetID() << " run: " << c.getBehaviour() << " at time: " << time << endl;
-                    cout << Scripts.find(c.getBehaviour())->second.toString() << endl;
-                }
-                if (c.getOperation() == Operation::STOP) {
-                    cout << "Agent " << c.getTargetID() << " stoped at time: " << time << endl;
-                }
-            }
-        }
-        if (time == 10) { cout << "end of the day" << endl; time = 0; cout << "start of the day" << endl; }
-        Sleep(1000);
-        time++;
-    }
-}
-*/
 // to sring
 string Scenario::toString()
 {

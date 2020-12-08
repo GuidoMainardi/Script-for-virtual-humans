@@ -1,8 +1,0 @@
-Agent 3 time 0 run GoTo
-Agent 1 time 1 run GoTo
-Agent 3 time 1 run GoTo2
-Agent 2 time 3 run GoTo2
-Agent 1 time 5 run GoTo2
-Agent 2 time 6 run GoTo
-Agent 1 time 6 Stop
-Agent 2 time 8 Stop

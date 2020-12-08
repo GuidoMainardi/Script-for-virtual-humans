@@ -18,6 +18,7 @@ private:
 	Instruction instruction;
 	int quantity;
 	Position place;
+	string destiny;
 	string to_String;
 
 public:
@@ -28,6 +29,7 @@ public:
 	int getQuantity() { return quantity; }
 	Position getPlace() { return place; }
 	string toString() { return to_String; }
+	string getDestiny() { return destiny; }
 	Position getnumber(int i, string str);
 };
 #endif

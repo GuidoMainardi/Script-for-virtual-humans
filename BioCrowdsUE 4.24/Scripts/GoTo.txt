@@ -1,1 +1,4 @@
-go to (-1000, -1100, 20)
+go to Quarto
+go to Cozinha
+go to Sala
+go to Banheiro

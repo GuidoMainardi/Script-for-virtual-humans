@@ -1,1 +1,1 @@
-go to (650, -650, 0)
+go to Sala
