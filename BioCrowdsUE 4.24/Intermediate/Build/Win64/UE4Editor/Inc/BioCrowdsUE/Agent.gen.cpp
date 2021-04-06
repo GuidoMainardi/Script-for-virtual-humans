@@ -17,8 +17,8 @@ void EmptyLinkFunctionForGeneratedCodeAgent() {}
 	BIOCROWDSUE_API UClass* Z_Construct_UClass_AAgent();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	UPackage* Z_Construct_UPackage__Script_BioCrowdsUE();
-	INPUTCORE_API UScriptStruct* Z_Construct_UScriptStruct_FKey();
 	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
+	INPUTCORE_API UScriptStruct* Z_Construct_UScriptStruct_FKey();
 	UMG_API UClass* Z_Construct_UClass_UButton_NoRegister();
 // End Cross Module References
 	DEFINE_FUNCTION(AAgent::exectoggleGoal)
@@ -53,19 +53,19 @@ void EmptyLinkFunctionForGeneratedCodeAgent() {}
 			AActor* TouchedActor;
 			FKey ButtonPressed;
 		};
-		static const UE4CodeGen_Private::FStructPropertyParams NewProp_ButtonPressed;
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_TouchedActor;
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_ButtonPressed;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
 #endif
 		static const UE4CodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AAgent_OnSelected_Statics::NewProp_ButtonPressed = { "ButtonPressed", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(Agent_eventOnSelected_Parms, ButtonPressed), Z_Construct_UScriptStruct_FKey, METADATA_PARAMS(nullptr, 0) };
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AAgent_OnSelected_Statics::NewProp_TouchedActor = { "TouchedActor", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(Agent_eventOnSelected_Parms, TouchedActor), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AAgent_OnSelected_Statics::NewProp_ButtonPressed = { "ButtonPressed", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(Agent_eventOnSelected_Parms, ButtonPressed), Z_Construct_UScriptStruct_FKey, METADATA_PARAMS(nullptr, 0) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AAgent_OnSelected_Statics::PropPointers[] = {
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AAgent_OnSelected_Statics::NewProp_ButtonPressed,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AAgent_OnSelected_Statics::NewProp_TouchedActor,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AAgent_OnSelected_Statics::NewProp_ButtonPressed,
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AAgent_OnSelected_Statics::Function_MetaDataParams[] = {
@@ -116,17 +116,17 @@ void EmptyLinkFunctionForGeneratedCodeAgent() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ShowGoal_MetaData[];
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ticks_MetaData[];
 #endif
-		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_ShowGoal;
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_ticks;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_duration_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_duration;
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ticks_MetaData[];
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ShowGoal_MetaData[];
 #endif
-		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_ticks;
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_ShowGoal;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -136,7 +136,7 @@ void EmptyLinkFunctionForGeneratedCodeAgent() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_BioCrowdsUE,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AAgent_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_AAgent_OnSelected, "OnSelected" }, // 2331965385
+		{ &Z_Construct_UFunction_AAgent_OnSelected, "OnSelected" }, // 3324652593
 		{ &Z_Construct_UFunction_AAgent_toggleGoal, "toggleGoal" }, // 1045758645
 	};
 #if WITH_METADATA
@@ -147,13 +147,12 @@ void EmptyLinkFunctionForGeneratedCodeAgent() {}
 	};
 #endif
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAgent_Statics::NewProp_ShowGoal_MetaData[] = {
-		{ "AgentMenu", "" },
-		{ "EditInline", "true" },
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAgent_Statics::NewProp_ticks_MetaData[] = {
+		{ "Category", "Behavior" },
 		{ "ModuleRelativePath", "src/Agent.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAgent_Statics::NewProp_ShowGoal = { "ShowGoal", nullptr, (EPropertyFlags)0x0010000000080008, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AAgent, ShowGoal), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AAgent_Statics::NewProp_ShowGoal_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AAgent_Statics::NewProp_ShowGoal_MetaData)) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_AAgent_Statics::NewProp_ticks = { "ticks", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AAgent, ticks), METADATA_PARAMS(Z_Construct_UClass_AAgent_Statics::NewProp_ticks_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AAgent_Statics::NewProp_ticks_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAgent_Statics::NewProp_duration_MetaData[] = {
 		{ "Category", "Behavior" },
@@ -162,16 +161,17 @@ void EmptyLinkFunctionForGeneratedCodeAgent() {}
 #endif
 	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_AAgent_Statics::NewProp_duration = { "duration", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AAgent, duration), METADATA_PARAMS(Z_Construct_UClass_AAgent_Statics::NewProp_duration_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AAgent_Statics::NewProp_duration_MetaData)) };
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAgent_Statics::NewProp_ticks_MetaData[] = {
-		{ "Category", "Behavior" },
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAgent_Statics::NewProp_ShowGoal_MetaData[] = {
+		{ "AgentMenu", "" },
+		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "src/Agent.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_AAgent_Statics::NewProp_ticks = { "ticks", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AAgent, ticks), METADATA_PARAMS(Z_Construct_UClass_AAgent_Statics::NewProp_ticks_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AAgent_Statics::NewProp_ticks_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAgent_Statics::NewProp_ShowGoal = { "ShowGoal", nullptr, (EPropertyFlags)0x0010000000080008, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AAgent, ShowGoal), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AAgent_Statics::NewProp_ShowGoal_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AAgent_Statics::NewProp_ShowGoal_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AAgent_Statics::PropPointers[] = {
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAgent_Statics::NewProp_ShowGoal,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAgent_Statics::NewProp_duration,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAgent_Statics::NewProp_ticks,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAgent_Statics::NewProp_duration,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAgent_Statics::NewProp_ShowGoal,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AAgent_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AAgent>::IsAbstract,
@@ -200,7 +200,7 @@ void EmptyLinkFunctionForGeneratedCodeAgent() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AAgent, 3089189963);
+	IMPLEMENT_CLASS(AAgent, 2077435288);
 	template<> BIOCROWDSUE_API UClass* StaticClass<AAgent>()
 	{
 		return AAgent::StaticClass();

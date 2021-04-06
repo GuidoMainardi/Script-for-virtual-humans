@@ -34,7 +34,7 @@ void EmptyLinkFunctionForGeneratedCodeLeader() {}
 		return EForm_StaticEnum();
 	}
 	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_EForm(EForm_StaticEnum, TEXT("/Script/BioCrowdsUE"), TEXT("EForm"), false, nullptr, nullptr);
-	uint32 Get_Z_Construct_UEnum_BioCrowdsUE_EForm_Hash() { return 1904199822U; }
+	uint32 Get_Z_Construct_UEnum_BioCrowdsUE_EForm_Hash() { return 471914912U; }
 	UEnum* Z_Construct_UEnum_BioCrowdsUE_EForm()
 	{
 #if WITH_HOT_RELOAD
@@ -82,6 +82,7 @@ void EmptyLinkFunctionForGeneratedCodeLeader() {}
 				Enumerators,
 				UE_ARRAY_COUNT(Enumerators),
 				RF_Public|RF_Transient|RF_MarkAsNative,
+				EEnumFlags::None,
 				UE4CodeGen_Private::EDynamicType::NotDynamic,
 				(uint8)UEnum::ECppForm::EnumClass,
 				METADATA_PARAMS(Enum_MetaDataParams, UE_ARRAY_COUNT(Enum_MetaDataParams))
@@ -104,19 +105,19 @@ void EmptyLinkFunctionForGeneratedCodeLeader() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_points_MetaData[];
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_numFollowers_MetaData[];
 #endif
-		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_points;
-		static const UE4CodeGen_Private::FStructPropertyParams NewProp_points_Inner;
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_numFollowers;
+		static const UE4CodeGen_Private::FBytePropertyParams NewProp_formation_Underlying;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_formation_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FEnumPropertyParams NewProp_formation;
-		static const UE4CodeGen_Private::FBytePropertyParams NewProp_formation_Underlying;
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_points_Inner;
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_numFollowers_MetaData[];
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_points_MetaData[];
 #endif
-		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_numFollowers;
+		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_points;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -133,13 +134,13 @@ void EmptyLinkFunctionForGeneratedCodeLeader() {}
 	};
 #endif
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ALeader_Statics::NewProp_points_MetaData[] = {
-		{ "Category", "SetUp" },
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ALeader_Statics::NewProp_numFollowers_MetaData[] = {
+		{ "Category", "Followers" },
 		{ "ModuleRelativePath", "src/Leader.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_UClass_ALeader_Statics::NewProp_points = { "points", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ALeader, points), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_ALeader_Statics::NewProp_points_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ALeader_Statics::NewProp_points_MetaData)) };
-	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UClass_ALeader_Statics::NewProp_points_Inner = { "points", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ALeader_Statics::NewProp_numFollowers = { "numFollowers", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ALeader, numFollowers), METADATA_PARAMS(Z_Construct_UClass_ALeader_Statics::NewProp_numFollowers_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ALeader_Statics::NewProp_numFollowers_MetaData)) };
+	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_UClass_ALeader_Statics::NewProp_formation_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ALeader_Statics::NewProp_formation_MetaData[] = {
 		{ "Category", "Followers" },
@@ -147,20 +148,20 @@ void EmptyLinkFunctionForGeneratedCodeLeader() {}
 	};
 #endif
 	const UE4CodeGen_Private::FEnumPropertyParams Z_Construct_UClass_ALeader_Statics::NewProp_formation = { "formation", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ALeader, formation), Z_Construct_UEnum_BioCrowdsUE_EForm, METADATA_PARAMS(Z_Construct_UClass_ALeader_Statics::NewProp_formation_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ALeader_Statics::NewProp_formation_MetaData)) };
-	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_UClass_ALeader_Statics::NewProp_formation_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UClass_ALeader_Statics::NewProp_points_Inner = { "points", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ALeader_Statics::NewProp_numFollowers_MetaData[] = {
-		{ "Category", "Followers" },
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ALeader_Statics::NewProp_points_MetaData[] = {
+		{ "Category", "SetUp" },
 		{ "ModuleRelativePath", "src/Leader.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ALeader_Statics::NewProp_numFollowers = { "numFollowers", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ALeader, numFollowers), METADATA_PARAMS(Z_Construct_UClass_ALeader_Statics::NewProp_numFollowers_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ALeader_Statics::NewProp_numFollowers_MetaData)) };
+	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_UClass_ALeader_Statics::NewProp_points = { "points", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ALeader, points), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_ALeader_Statics::NewProp_points_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ALeader_Statics::NewProp_points_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ALeader_Statics::PropPointers[] = {
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALeader_Statics::NewProp_points,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALeader_Statics::NewProp_points_Inner,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALeader_Statics::NewProp_formation,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALeader_Statics::NewProp_formation_Underlying,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALeader_Statics::NewProp_numFollowers,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALeader_Statics::NewProp_formation_Underlying,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALeader_Statics::NewProp_formation,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALeader_Statics::NewProp_points_Inner,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALeader_Statics::NewProp_points,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ALeader_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ALeader>::IsAbstract,
@@ -189,7 +190,7 @@ void EmptyLinkFunctionForGeneratedCodeLeader() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ALeader, 2230821040);
+	IMPLEMENT_CLASS(ALeader, 1671404744);
 	template<> BIOCROWDSUE_API UClass* StaticClass<ALeader>()
 	{
 		return ALeader::StaticClass();

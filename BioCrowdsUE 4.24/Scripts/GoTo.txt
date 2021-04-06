@@ -1,4 +1,3 @@
 go to Quarto
-go to Cozinha
-go to Sala
+Play Dance
 go to Banheiro

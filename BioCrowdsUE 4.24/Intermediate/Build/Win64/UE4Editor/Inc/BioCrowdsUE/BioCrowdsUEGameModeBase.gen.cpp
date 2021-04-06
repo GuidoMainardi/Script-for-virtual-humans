@@ -74,7 +74,7 @@ void EmptyLinkFunctionForGeneratedCodeBioCrowdsUEGameModeBase() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ABioCrowdsUEGameModeBase, 4011554096);
+	IMPLEMENT_CLASS(ABioCrowdsUEGameModeBase, 3122627777);
 	template<> BIOCROWDSUE_API UClass* StaticClass<ABioCrowdsUEGameModeBase>()
 	{
 		return ABioCrowdsUEGameModeBase::StaticClass();

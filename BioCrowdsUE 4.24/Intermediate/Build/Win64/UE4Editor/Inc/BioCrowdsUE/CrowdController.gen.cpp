@@ -34,29 +34,29 @@ void EmptyLinkFunctionForGeneratedCodeCrowdController() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_WidgetBPRef_MetaData[];
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_numSamples_MetaData[];
 #endif
-		static const UE4CodeGen_Private::FClassPropertyParams NewProp_WidgetBPRef;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_duration_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_duration;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_agentR_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_agentR;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_agentV_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_agentV;
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_numSamples;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_numAgents_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_numAgents;
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_numSamples_MetaData[];
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_agentV_MetaData[];
 #endif
-		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_numSamples;
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_agentV;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_agentR_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_agentR;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_duration_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_duration;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_WidgetBPRef_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FClassPropertyParams NewProp_WidgetBPRef;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -72,26 +72,21 @@ void EmptyLinkFunctionForGeneratedCodeCrowdController() {}
 	};
 #endif
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACrowdController_Statics::NewProp_WidgetBPRef_MetaData[] = {
-		{ "Category", "Widget" },
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACrowdController_Statics::NewProp_numSamples_MetaData[] = {
+		{ "Category", "SetUp" },
+		{ "Comment", "//TArray<AAIController*> aic; //faster than getting controller each time? make sure matches up\n" },
 		{ "ModuleRelativePath", "src/CrowdController.h" },
+		{ "ToolTip", "TArray<AAIController*> aic; faster than getting controller each time? make sure matches up" },
 	};
 #endif
-	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_ACrowdController_Statics::NewProp_WidgetBPRef = { "WidgetBPRef", nullptr, (EPropertyFlags)0x0014000000000005, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACrowdController, WidgetBPRef), Z_Construct_UClass_UUserWidget_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ACrowdController_Statics::NewProp_WidgetBPRef_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACrowdController_Statics::NewProp_WidgetBPRef_MetaData)) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ACrowdController_Statics::NewProp_numSamples = { "numSamples", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACrowdController, numSamples), METADATA_PARAMS(Z_Construct_UClass_ACrowdController_Statics::NewProp_numSamples_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACrowdController_Statics::NewProp_numSamples_MetaData)) };
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACrowdController_Statics::NewProp_duration_MetaData[] = {
-		{ "Category", "Behavior" },
-		{ "ModuleRelativePath", "src/CrowdController.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ACrowdController_Statics::NewProp_duration = { "duration", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACrowdController, duration), METADATA_PARAMS(Z_Construct_UClass_ACrowdController_Statics::NewProp_duration_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACrowdController_Statics::NewProp_duration_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACrowdController_Statics::NewProp_agentR_MetaData[] = {
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACrowdController_Statics::NewProp_numAgents_MetaData[] = {
 		{ "Category", "SetUp" },
 		{ "ModuleRelativePath", "src/CrowdController.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ACrowdController_Statics::NewProp_agentR = { "agentR", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACrowdController, agentR), METADATA_PARAMS(Z_Construct_UClass_ACrowdController_Statics::NewProp_agentR_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACrowdController_Statics::NewProp_agentR_MetaData)) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ACrowdController_Statics::NewProp_numAgents = { "numAgents", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACrowdController, numAgents), METADATA_PARAMS(Z_Construct_UClass_ACrowdController_Statics::NewProp_numAgents_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACrowdController_Statics::NewProp_numAgents_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACrowdController_Statics::NewProp_agentV_MetaData[] = {
 		{ "Category", "SetUp" },
@@ -102,28 +97,33 @@ void EmptyLinkFunctionForGeneratedCodeCrowdController() {}
 #endif
 	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ACrowdController_Statics::NewProp_agentV = { "agentV", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACrowdController, agentV), METADATA_PARAMS(Z_Construct_UClass_ACrowdController_Statics::NewProp_agentV_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACrowdController_Statics::NewProp_agentV_MetaData)) };
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACrowdController_Statics::NewProp_numAgents_MetaData[] = {
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACrowdController_Statics::NewProp_agentR_MetaData[] = {
 		{ "Category", "SetUp" },
 		{ "ModuleRelativePath", "src/CrowdController.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ACrowdController_Statics::NewProp_numAgents = { "numAgents", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACrowdController, numAgents), METADATA_PARAMS(Z_Construct_UClass_ACrowdController_Statics::NewProp_numAgents_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACrowdController_Statics::NewProp_numAgents_MetaData)) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ACrowdController_Statics::NewProp_agentR = { "agentR", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACrowdController, agentR), METADATA_PARAMS(Z_Construct_UClass_ACrowdController_Statics::NewProp_agentR_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACrowdController_Statics::NewProp_agentR_MetaData)) };
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACrowdController_Statics::NewProp_numSamples_MetaData[] = {
-		{ "Category", "SetUp" },
-		{ "Comment", "//TArray<AAIController*> aic; //faster than getting controller each time? make sure matches up\n" },
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACrowdController_Statics::NewProp_duration_MetaData[] = {
+		{ "Category", "Behavior" },
 		{ "ModuleRelativePath", "src/CrowdController.h" },
-		{ "ToolTip", "TArray<AAIController*> aic; faster than getting controller each time? make sure matches up" },
 	};
 #endif
-	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ACrowdController_Statics::NewProp_numSamples = { "numSamples", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACrowdController, numSamples), METADATA_PARAMS(Z_Construct_UClass_ACrowdController_Statics::NewProp_numSamples_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACrowdController_Statics::NewProp_numSamples_MetaData)) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ACrowdController_Statics::NewProp_duration = { "duration", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACrowdController, duration), METADATA_PARAMS(Z_Construct_UClass_ACrowdController_Statics::NewProp_duration_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACrowdController_Statics::NewProp_duration_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACrowdController_Statics::NewProp_WidgetBPRef_MetaData[] = {
+		{ "Category", "Widget" },
+		{ "ModuleRelativePath", "src/CrowdController.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_ACrowdController_Statics::NewProp_WidgetBPRef = { "WidgetBPRef", nullptr, (EPropertyFlags)0x0014000000000005, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACrowdController, WidgetBPRef), Z_Construct_UClass_UUserWidget_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ACrowdController_Statics::NewProp_WidgetBPRef_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACrowdController_Statics::NewProp_WidgetBPRef_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ACrowdController_Statics::PropPointers[] = {
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACrowdController_Statics::NewProp_WidgetBPRef,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACrowdController_Statics::NewProp_duration,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACrowdController_Statics::NewProp_agentR,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACrowdController_Statics::NewProp_agentV,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACrowdController_Statics::NewProp_numAgents,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACrowdController_Statics::NewProp_numSamples,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACrowdController_Statics::NewProp_numAgents,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACrowdController_Statics::NewProp_agentV,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACrowdController_Statics::NewProp_agentR,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACrowdController_Statics::NewProp_duration,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACrowdController_Statics::NewProp_WidgetBPRef,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ACrowdController_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ACrowdController>::IsAbstract,
@@ -152,7 +152,7 @@ void EmptyLinkFunctionForGeneratedCodeCrowdController() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ACrowdController, 1793718582);
+	IMPLEMENT_CLASS(ACrowdController, 36288815);
 	template<> BIOCROWDSUE_API UClass* StaticClass<ACrowdController>()
 	{
 		return ACrowdController::StaticClass();

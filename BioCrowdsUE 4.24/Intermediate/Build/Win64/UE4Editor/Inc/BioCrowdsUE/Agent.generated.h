@@ -15,20 +15,20 @@ struct FKey;
 #endif
 #define BIOCROWDSUE_Agent_generated_h
 
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_25_SPARSE_DATA
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_25_RPC_WRAPPERS \
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_26_SPARSE_DATA
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_26_RPC_WRAPPERS \
  \
 	DECLARE_FUNCTION(exectoggleGoal); \
 	DECLARE_FUNCTION(execOnSelected);
 
 
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_25_RPC_WRAPPERS_NO_PURE_DECLS \
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_26_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(exectoggleGoal); \
 	DECLARE_FUNCTION(execOnSelected);
 
 
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_25_INCLASS_NO_PURE_DECLS \
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_26_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAAgent(); \
 	friend struct Z_Construct_UClass_AAgent_Statics; \
@@ -37,7 +37,7 @@ public: \
 	DECLARE_SERIALIZER(AAgent)
 
 
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_25_INCLASS \
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_26_INCLASS \
 private: \
 	static void StaticRegisterNativesAAgent(); \
 	friend struct Z_Construct_UClass_AAgent_Statics; \
@@ -46,7 +46,7 @@ public: \
 	DECLARE_SERIALIZER(AAgent)
 
 
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_25_STANDARD_CONSTRUCTORS \
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_26_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API AAgent(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(AAgent) \
@@ -59,7 +59,7 @@ private: \
 public:
 
 
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_25_ENHANCED_CONSTRUCTORS \
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_26_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API AAgent(AAgent&&); \
@@ -70,28 +70,28 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AAgent); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(AAgent)
 
 
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_25_PRIVATE_PROPERTY_OFFSET
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_22_PROLOG
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_25_GENERATED_BODY_LEGACY \
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_26_PRIVATE_PROPERTY_OFFSET
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_23_PROLOG
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_26_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_25_PRIVATE_PROPERTY_OFFSET \
-	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_25_SPARSE_DATA \
-	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_25_RPC_WRAPPERS \
-	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_25_INCLASS \
-	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_25_STANDARD_CONSTRUCTORS \
+	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_26_PRIVATE_PROPERTY_OFFSET \
+	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_26_SPARSE_DATA \
+	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_26_RPC_WRAPPERS \
+	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_26_INCLASS \
+	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_26_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_25_GENERATED_BODY \
+#define BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_26_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_25_PRIVATE_PROPERTY_OFFSET \
-	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_25_SPARSE_DATA \
-	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_25_RPC_WRAPPERS_NO_PURE_DECLS \
-	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_25_INCLASS_NO_PURE_DECLS \
-	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_25_ENHANCED_CONSTRUCTORS \
+	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_26_PRIVATE_PROPERTY_OFFSET \
+	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_26_SPARSE_DATA \
+	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_26_RPC_WRAPPERS_NO_PURE_DECLS \
+	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_26_INCLASS_NO_PURE_DECLS \
+	BioCrowdsUE_4_24_Source_BioCrowdsUE_src_Agent_h_26_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

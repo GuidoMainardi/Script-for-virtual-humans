@@ -15,6 +15,9 @@ AAgent::AAgent()
 	ConstructorHelpers::FObjectFinder<UAnimBlueprint>AnimRef(TEXT("AnimBlueprint'/Game/Mannequin/Animations/ThirdPerson_AnimBP.ThirdPerson_AnimBP'"));
     
 	ConstructorHelpers::FObjectFinder<UPhysicsAsset>PhysRef(TEXT("PhysicsAsset'/Game/Mannequin/Character/Mesh/SK_Mannequin_PhysicsAsset.SK_Mannequin_PhysicsAsset'"));
+    Animdefault = AnimRef.Object;
+    ConstructorHelpers::FObjectFinder<UAnimSequence>AnimSequence(TEXT("AnimSequence'/Game/Mannequin/Animations/Dance.Dance'"));
+    Animations.Add(TEXT("Dance"), AnimSequence.Object);
     
     
     USkeletalMesh* MeshObj = MeshRef.Object;
@@ -26,7 +29,7 @@ AAgent::AAgent()
     MySkeleton->SetAnimInstanceClass(AnimRef.Object->GeneratedClass);
     
     MySkeleton->SetRelativeLocationAndRotation(FVector(0, 0, -90), FRotator(0, -90, 0));
-    
+
     //three orientation variables
     bUseControllerRotationYaw = false;
     GetCharacterMovement()->bOrientRotationToMovement = true;
@@ -35,6 +38,8 @@ AAgent::AAgent()
     GetCapsuleComponent()->SetCollisionProfileName("OverlapOnlyPawn");
     showGoal = true;
     showMarkers = true;
+
+    
 
 }
 

@@ -1,7 +1,7 @@
-C:\Users\guido\Documents\sextoSemestre\Bolsa IC\Soraia\BioCrowdsUE 4.24\Intermediate\Build\Win64\UE4Editor\Development\BioCrowdsUE\Definitions.BioCrowdsUE.h
-C:\Users\guido\Documents\sextoSemestre\Bolsa IC\Soraia\BioCrowdsUE 4.24\Source\BioCrowdsUE\BioCrowdsUEGameModeBase.h
-D:\Jogos\EpicGames\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/GameModeBase.h
-D:\Jogos\EpicGames\UE_4.25\Engine\Source\Runtime\Engine\Classes\Engine/ServerStatReplicator.h
-D:\Jogos\EpicGames\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ServerStatReplicator.generated.h
-D:\Jogos\EpicGames\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameModeBase.generated.h
-C:\Users\guido\Documents\sextoSemestre\Bolsa IC\Soraia\BioCrowdsUE 4.24\Intermediate\Build\Win64\UE4Editor\Inc\BioCrowdsUE\BioCrowdsUEGameModeBase.generated.h
+D:\TCC\Pojeto\Script-for-virtual-humans\BioCrowdsUE 4.24\Intermediate\Build\Win64\UE4Editor\Development\BioCrowdsUE\Definitions.BioCrowdsUE.h
+D:\TCC\Pojeto\Script-for-virtual-humans\BioCrowdsUE 4.24\Source\BioCrowdsUE\BioCrowdsUEGameModeBase.h
+D:\TCC\UE_4.26\Engine\Source\Runtime\Engine\Classes\GameFramework/GameModeBase.h
+D:\TCC\UE_4.26\Engine\Source\Runtime\Engine\Classes\Engine/ServerStatReplicator.h
+D:\TCC\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ServerStatReplicator.generated.h
+D:\TCC\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameModeBase.generated.h
+D:\TCC\Pojeto\Script-for-virtual-humans\BioCrowdsUE 4.24\Intermediate\Build\Win64\UE4Editor\Inc\BioCrowdsUE\BioCrowdsUEGameModeBase.generated.h

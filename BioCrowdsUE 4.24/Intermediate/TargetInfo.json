@@ -2,12 +2,12 @@
 	"Targets": [
 		{
 			"Name": "BioCrowdsUE",
-			"Path": "C:\\Users\\guido\\Documents\\sextoSemestre\\Bolsa IC\\Soraia\\BioCrowdsUE 4.24\\Source\\BioCrowdsUE.Target.cs",
+			"Path": "D:\\TCC\\Pojeto\\Script-for-virtual-humans\\BioCrowdsUE 4.24\\Source\\BioCrowdsUE.Target.cs",
 			"Type": "Game"
 		},
 		{
 			"Name": "BioCrowdsUEEditor",
-			"Path": "C:\\Users\\guido\\Documents\\sextoSemestre\\Bolsa IC\\Soraia\\BioCrowdsUE 4.24\\Source\\BioCrowdsUEEditor.Target.cs",
+			"Path": "D:\\TCC\\Pojeto\\Script-for-virtual-humans\\BioCrowdsUE 4.24\\Source\\BioCrowdsUEEditor.Target.cs",
 			"Type": "Editor"
 		}
 	]

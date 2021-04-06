@@ -73,7 +73,7 @@ void EmptyLinkFunctionForGeneratedCodeFollower() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AFollower, 4107873882);
+	IMPLEMENT_CLASS(AFollower, 1116494449);
 	template<> BIOCROWDSUE_API UClass* StaticClass<AFollower>()
 	{
 		return AFollower::StaticClass();

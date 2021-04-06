@@ -560,35 +560,29 @@ void ACrowdController::Tick(float DeltaTime) {
     UNavigationSystemV1* navSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
     ARecastNavMesh* navMesh = navSys ? Cast<ARecastNavMesh>(navSys->GetDefaultNavDataInstance()) : nullptr;
     tempo += DeltaTime;
-
     for (auto c : scene.text) {
         if (c.getTime() == int(tempo)) {
+            auto atual = agents[c.getTargetID() - 1];
             if (c.getOperation() == Operation::RUN) {
-                agents[c.getTargetID() - 1]->nowPlaying = FString(c.getBehaviour().c_str());
-                agents[c.getTargetID() - 1]->hasSomethingToPlay = true;
-                agents[c.getTargetID() - 1]->pc = 0;
+                atual->nowPlaying = FString(c.getBehaviour().c_str());
+                atual->hasSomethingToPlay = true;
+                atual->pc = 0;
             }
             if (c.getOperation() == Operation::STOP) {
-                agents[c.getTargetID() - 1]->goal = agents[c.getTargetID() - 1]->GetActorLocation();
+                atual->goal = agents[c.getTargetID() - 1]->GetActorLocation();
+                atual->hasSomethingToPlay = false;
             }
         }
     }
     for (AAgent* a : agents) {
-        if (!a->inAction && a->pc < scene.Scripts.find(string(TCHAR_TO_UTF8(*a->nowPlaying)))->second.text.size() && a->hasSomethingToPlay) {
+        if (!a->inAction && a->pc < scene.Scripts.find(string(TCHAR_TO_UTF8(*a->nowPlaying)))->second.text.size() && a->hasSomethingToPlay && !a->inAnim) {
             BehaviourCommand bc = scene.Scripts.find(string(TCHAR_TO_UTF8(*a->nowPlaying)))->second.text[a->pc];
             a->inAction = true;
+
             if (bc.getOpcode() == Opcode::GO) {
                 string local = bc.getDestiny();
                 FString regiao(local.c_str());
-                //UE_LOG(LogTemp, Warning, TEXT("%d"), a->pc);
-                //UE_LOG(LogTemp, Warning, TEXT("%s"), *regiao);
-                //UE_LOG(LogTemp, Warning, TEXT("-----------------------------"));
-                //UE_LOG(LogTemp, Warning, TEXT("%d"), Locais["Quarto"]);
-                //int teste = Locais.Contains(regiao);
-                //UE_LOG(LogTemp, Warning, TEXT("teste: %d"), teste);
-                //UE_LOG(LogTemp, Warning, TEXT("tamanho: %d"), regiao.Len());
                 int idx = Locais[regiao];
-                //UE_LOG(LogTemp, Warning, TEXT("%d"), idx);
                 FBox quad = regsVacant[idx]->box;
                 FNavLocation loc;
                 FVector center = quad.GetCenter();
@@ -596,7 +590,6 @@ void ACrowdController::Tick(float DeltaTime) {
                 float dist2 = FVector::Distance(center, FVector(quad.Min.X, center.Y, center.Z));
                 navMesh->GetRandomPointInNavigableRadius(center, FMath::Min(dist1, dist2), loc);
 
-                //FVector vaipara(local.getX(), local.getY(), local.getZ());
                 FVector vaipara(loc.Location.X, loc.Location.Y, loc.Location.Z);
                 a->goal = vaipara;
                 a->goal.Z += 90;
@@ -609,20 +602,39 @@ void ACrowdController::Tick(float DeltaTime) {
                 a->goal = path[0];
                 a->goal.Z += 90;
                 a->path.RemoveAt(0);
+                a->inAction = true;
             }
+
             if (bc.getOpcode() == Opcode::PLAY) {
+                //(LogTemp, Warning, TEXT("%s"), *bc.getDestiny().c_str());
+                a->inAnim = true;
+                a->playAnimation("Dance");
+                UE_LOG(LogTemp, Warning, TEXT("%f"), a->Animations["Dance"]->GetPlayLength());
+                UE_LOG(LogTemp, Warning, TEXT("%d"), a->inAnim);
 
             }
         }
-        if (a->pc >= scene.Scripts.find(string(TCHAR_TO_UTF8(*a->nowPlaying)))->second.text.size() && !a->inAction) {
+        if (a->pc > scene.Scripts.find(string(TCHAR_TO_UTF8(*a->nowPlaying)))->second.text.size() && !a->inAction) {
             a->hasSomethingToPlay = false;
             a->pc = 0;
-        }
+        } 
         FVector vel = a->GetVelocity();
         float dist = FVector::Distance(a->GetActorLocation(), a->finalGoal);
-        if (a->inAction && dist < 91) {
-            a->inAction = false;
-            a->pc++;
+        if (dist < 101) {
+            if(a->inAction){ 
+                a->inAction = false; 
+            }
+            if (a->inAnim) {
+                a->animtime += DeltaTime;
+                if (a->animtime >= a->Animations[a->AnimName]->GetPlayLength()) {
+                    a->animtime = 0.f;
+                    a->inAnim = false;
+                    a->MySkeleton->SetAnimInstanceClass(a->Animdefault->GeneratedClass);
+                }
+            }
+            if (!a->inAction && !a->inAnim) {
+                a->pc++;
+            }
         }
     }
     //Update goals

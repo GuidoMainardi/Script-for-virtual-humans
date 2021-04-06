@@ -53,27 +53,27 @@ void EmptyLinkFunctionForGeneratedCodeFIleReader() {}
 			FString SaveTextA;
 			bool ReturnValue;
 		};
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_FileNameA;
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_SaveTextA;
 		static void NewProp_ReturnValue_SetBit(void* Obj);
 		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
-		static const UE4CodeGen_Private::FStrPropertyParams NewProp_SaveTextA;
-		static const UE4CodeGen_Private::FStrPropertyParams NewProp_FileNameA;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
 #endif
 		static const UE4CodeGen_Private::FFunctionParams FuncParams;
 	};
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UFIleReader_LoadTxt_Statics::NewProp_FileNameA = { "FileNameA", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FIleReader_eventLoadTxt_Parms, FileNameA), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UFIleReader_LoadTxt_Statics::NewProp_SaveTextA = { "SaveTextA", nullptr, (EPropertyFlags)0x0010000000000180, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FIleReader_eventLoadTxt_Parms, SaveTextA), METADATA_PARAMS(nullptr, 0) };
 	void Z_Construct_UFunction_UFIleReader_LoadTxt_Statics::NewProp_ReturnValue_SetBit(void* Obj)
 	{
 		((FIleReader_eventLoadTxt_Parms*)Obj)->ReturnValue = 1;
 	}
 	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_UFIleReader_LoadTxt_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(FIleReader_eventLoadTxt_Parms), &Z_Construct_UFunction_UFIleReader_LoadTxt_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(nullptr, 0) };
-	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UFIleReader_LoadTxt_Statics::NewProp_SaveTextA = { "SaveTextA", nullptr, (EPropertyFlags)0x0010000000000180, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FIleReader_eventLoadTxt_Parms, SaveTextA), METADATA_PARAMS(nullptr, 0) };
-	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UFIleReader_LoadTxt_Statics::NewProp_FileNameA = { "FileNameA", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FIleReader_eventLoadTxt_Parms, FileNameA), METADATA_PARAMS(nullptr, 0) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UFIleReader_LoadTxt_Statics::PropPointers[] = {
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UFIleReader_LoadTxt_Statics::NewProp_ReturnValue,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UFIleReader_LoadTxt_Statics::NewProp_SaveTextA,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UFIleReader_LoadTxt_Statics::NewProp_FileNameA,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UFIleReader_LoadTxt_Statics::NewProp_SaveTextA,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UFIleReader_LoadTxt_Statics::NewProp_ReturnValue,
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UFIleReader_LoadTxt_Statics::Function_MetaDataParams[] = {
@@ -100,27 +100,27 @@ void EmptyLinkFunctionForGeneratedCodeFIleReader() {}
 			FString FileNameB;
 			bool ReturnValue;
 		};
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_SaveTextB;
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_FileNameB;
 		static void NewProp_ReturnValue_SetBit(void* Obj);
 		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
-		static const UE4CodeGen_Private::FStrPropertyParams NewProp_FileNameB;
-		static const UE4CodeGen_Private::FStrPropertyParams NewProp_SaveTextB;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
 #endif
 		static const UE4CodeGen_Private::FFunctionParams FuncParams;
 	};
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UFIleReader_SaveTxt_Statics::NewProp_SaveTextB = { "SaveTextB", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FIleReader_eventSaveTxt_Parms, SaveTextB), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UFIleReader_SaveTxt_Statics::NewProp_FileNameB = { "FileNameB", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FIleReader_eventSaveTxt_Parms, FileNameB), METADATA_PARAMS(nullptr, 0) };
 	void Z_Construct_UFunction_UFIleReader_SaveTxt_Statics::NewProp_ReturnValue_SetBit(void* Obj)
 	{
 		((FIleReader_eventSaveTxt_Parms*)Obj)->ReturnValue = 1;
 	}
 	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_UFIleReader_SaveTxt_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(FIleReader_eventSaveTxt_Parms), &Z_Construct_UFunction_UFIleReader_SaveTxt_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(nullptr, 0) };
-	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UFIleReader_SaveTxt_Statics::NewProp_FileNameB = { "FileNameB", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FIleReader_eventSaveTxt_Parms, FileNameB), METADATA_PARAMS(nullptr, 0) };
-	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UFIleReader_SaveTxt_Statics::NewProp_SaveTextB = { "SaveTextB", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FIleReader_eventSaveTxt_Parms, SaveTextB), METADATA_PARAMS(nullptr, 0) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UFIleReader_SaveTxt_Statics::PropPointers[] = {
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UFIleReader_SaveTxt_Statics::NewProp_ReturnValue,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UFIleReader_SaveTxt_Statics::NewProp_FileNameB,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UFIleReader_SaveTxt_Statics::NewProp_SaveTextB,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UFIleReader_SaveTxt_Statics::NewProp_FileNameB,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UFIleReader_SaveTxt_Statics::NewProp_ReturnValue,
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UFIleReader_SaveTxt_Statics::Function_MetaDataParams[] = {
@@ -158,8 +158,8 @@ void EmptyLinkFunctionForGeneratedCodeFIleReader() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_BioCrowdsUE,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UFIleReader_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UFIleReader_LoadTxt, "LoadTxt" }, // 3516650481
-		{ &Z_Construct_UFunction_UFIleReader_SaveTxt, "SaveTxt" }, // 3384221780
+		{ &Z_Construct_UFunction_UFIleReader_LoadTxt, "LoadTxt" }, // 3994611418
+		{ &Z_Construct_UFunction_UFIleReader_SaveTxt, "SaveTxt" }, // 4183144328
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UFIleReader_Statics::Class_MetaDataParams[] = {
@@ -195,7 +195,7 @@ void EmptyLinkFunctionForGeneratedCodeFIleReader() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UFIleReader, 3821272003);
+	IMPLEMENT_CLASS(UFIleReader, 1796876007);
 	template<> BIOCROWDSUE_API UClass* StaticClass<UFIleReader>()
 	{
 		return UFIleReader::StaticClass();

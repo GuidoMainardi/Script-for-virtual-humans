@@ -71,7 +71,7 @@ void EmptyLinkFunctionForGeneratedCodeMarkerVis() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AMarkerVis, 3146175053);
+	IMPLEMENT_CLASS(AMarkerVis, 2621405376);
 	template<> BIOCROWDSUE_API UClass* StaticClass<AMarkerVis>()
 	{
 		return AMarkerVis::StaticClass();

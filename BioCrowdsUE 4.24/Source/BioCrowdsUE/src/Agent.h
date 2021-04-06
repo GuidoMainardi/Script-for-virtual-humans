@@ -17,6 +17,7 @@
 #include "GameFramework/Character.h"
 #include "Agent.generated.h"
 
+
 class BMarker;
 
 UCLASS()
@@ -41,6 +42,7 @@ public:
     TArray<BMarker*> markers;
     TArray<FVector> path;
     TArray<AMarkerVis*> mVis;
+    TMap<FString, UAnimSequence*> Animations;
 
     //Behavior
     ATextRenderActor* text;
@@ -67,6 +69,12 @@ public:
     FString nowPlaying = "";
     int pc = 0;
     bool hasSomethingToPlay = false;
+    //animation
+    UAnimSequence* Anim;
+    bool inAnim = false;
+    float animtime = 0.f;
+    FString AnimName = "";
+    UAnimBlueprint* Animdefault;
     //Region* reg;
     ARegionBox* reg;
 
@@ -76,6 +84,11 @@ public:
     UFUNCTION()
     void toggleGoal() {
         showGoal = !showGoal;
+    }
+
+    void playAnimation(FString AnimName) {
+        this->AnimName = AnimName;
+        GetMesh()->PlayAnimation(Animations[AnimName], false);
     }
 
 protected:

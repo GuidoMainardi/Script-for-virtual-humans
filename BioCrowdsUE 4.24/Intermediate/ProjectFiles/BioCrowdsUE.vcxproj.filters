@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\BioCrowdsUE.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{43A9AC8A-7BD5-4A94-B17B-EA13E642BC56}</UniqueIdentifier>
+      <UniqueIdentifier>{6464F6F2-961F-456E-A816-849631E3574E}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\BioCrowdsUE.Target.cs">
       <Filter>Source</Filter>
@@ -11,16 +11,21 @@
     <None Include="..\..\Source\BioCrowdsUEEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
-    <None Include="..\..\BioCrowdsUE.png" />
     <Filter Include="Config">
-      <UniqueIdentifier>{0CA39664-665F-4C91-9817-36B30383A30D}</UniqueIdentifier>
+      <UniqueIdentifier>{FAF1B673-2B1A-4082-A990-EACBE3221AAD}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\BioCrowdsUE">
-      <UniqueIdentifier>{4A728969-54CE-4D0B-BC58-F355F200DE83}</UniqueIdentifier>
+      <UniqueIdentifier>{2F130D60-2DF1-4016-8395-507C5E49CD31}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\BioCrowdsUE\AnimFinder.cpp">
+      <Filter>Source\BioCrowdsUE</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BioCrowdsUE\AnimFinder.h">
+      <Filter>Source\BioCrowdsUE</Filter>
+    </ClInclude>
     <None Include="..\..\Source\BioCrowdsUE\BioCrowdsUE.Build.cs">
       <Filter>Source\BioCrowdsUE</Filter>
     </None>
@@ -36,8 +41,20 @@
     <ClInclude Include="..\..\Source\BioCrowdsUE\BioCrowdsUEGameModeBase.h">
       <Filter>Source\BioCrowdsUE</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\BioCrowdsUE\MyClas.cpp">
+      <Filter>Source\BioCrowdsUE</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BioCrowdsUE\MyClas.h">
+      <Filter>Source\BioCrowdsUE</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\BioCrowdsUE\MyClass.cpp">
+      <Filter>Source\BioCrowdsUE</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BioCrowdsUE\MyClass.h">
+      <Filter>Source\BioCrowdsUE</Filter>
+    </ClInclude>
     <Filter Include="Source\BioCrowdsUE\src">
-      <UniqueIdentifier>{05D8DB8F-D4F0-4AFC-A421-AC7199C1CF8B}</UniqueIdentifier>
+      <UniqueIdentifier>{211958FE-E28D-4D3E-9CE1-7C259ACEDF56}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\BioCrowdsUE\src\Agent.cpp">
       <Filter>Source\BioCrowdsUE\src</Filter>
@@ -144,8 +161,26 @@
     <ClInclude Include="..\..\Source\BioCrowdsUE\src\ScriptCommand.h">
       <Filter>Source\BioCrowdsUE\src</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\BioCrowdsUE\src\Senario.cpp">
+      <Filter>Source\BioCrowdsUE\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BioCrowdsUE\src\Senario.h">
+      <Filter>Source\BioCrowdsUE\src</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\BioCrowdsUE\src\Target.h">
       <Filter>Source\BioCrowdsUE\src</Filter>
     </ClInclude>
+    <Filter Include="Source\BioCrowdsUE\src\.vs">
+      <UniqueIdentifier>{A006B458-C647-4221-8870-A3DDE25B6258}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\BioCrowdsUE\src\.vs\BioCrowdsUE 4.24">
+      <UniqueIdentifier>{BD9E821F-32DE-4224-9026-EE66F35AC25C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\BioCrowdsUE\src\.vs\BioCrowdsUE 4.24\v16">
+      <UniqueIdentifier>{10607949-F476-4E07-BF39-E379FA3E102E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\BioCrowdsUE\src\.vs\BioCrowdsUE 4.24\v16\Browse.VC.db">
+      <Filter>Source\BioCrowdsUE\src\.vs\BioCrowdsUE 4.24\v16</Filter>
+    </None>
   </ItemGroup>
 </Project>

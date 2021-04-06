@@ -1,2 +1,2 @@
 Create 1 Agent in Sala
-Agent 1 time 3 run GoTo
+Agent 1 time 1 run GoTo

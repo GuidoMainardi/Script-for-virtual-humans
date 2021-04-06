@@ -29,21 +29,7 @@ BehaviourCommand::BehaviourCommand(string command){
 		opcode = Opcode::PLAY;
 		to_String += "Play ";
 
-		//Claps
-		if (iequals(command.substr(5, 5), "Claps")) {
-
-			instruction = Instruction::CLAPS;
-			to_String += "Claps";
-
-		}
-
-		//Dance
-		if (iequals(command.substr(5, 5), "Dance")) {
-
-			instruction = Instruction::DANCE;
-			to_String += "Dance";
-
-		}
+		destiny = command.substr(5);
 	}
 }
 
