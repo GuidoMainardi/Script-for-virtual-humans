@@ -293,20 +293,7 @@ void ACrowdController::BeginPlay() {
         RegionName = regions[i]->GetName();
         //UE_LOG(LogTemp, Warning, TEXT("%s"), *RegionName);
         Locais.Add(RegionName, i);
-        //Locais[regions[i]->GetName()] = i;
-        //Locais.insert(regions[i]->GetName(), i);
-        //UE_LOG(LogTemp, Warning, TEXT("%s"), *regions[i]->GetName());
-        //UE_LOG(LogTemp, Warning, TEXT("%d"), Locais[RegionName]);
-        //UE_LOG(LogTemp, Warning, TEXT("---------------"));
     }
-    //UE_LOG(LogTemp, Warning, TEXT("%d"), Locais.Num());
-    //UE_LOG(LogTemp, Warning, TEXT("------------------------------------------"));
-    //UE_LOG(LogTemp, Warning, TEXT("%d"), regsVacant.Num());
-    //UE_LOG(LogTemp, Warning, TEXT("------------------------------------------"));
-    //UE_LOG(LogTemp, Warning, TEXT("%s"), *regions[0]->GetName());
-    /// Carrega Script e configura o numero de agentes, salvar em numAgents
-    //UE_LOG(LogTemp, Warning, TEXT("%d"), numAgents);
-    //UE_LOG(LogTemp, Warning, TEXT("%d"), scene.load());
     int actualNumAgents = 0; // numero de agentes
     //random goal setup
     if (regsVacant.Num() != 0) {
@@ -319,7 +306,28 @@ void ACrowdController::BeginPlay() {
             LocalNumberOfAgents++;
             //int idx = FMath::RandRange(0, regsVacant.Num() - 1);
             //UE_LOG(LogTemp, Warning, TEXT("Quadrante inicial: %d"), Locais[scene.text[line].getRegionName().c_str()]);
-            int idx = Locais[scene.text[line].getRegionName().c_str()];
+            int idx;
+            FString regionName = scene.text[line].getRegionName().c_str();
+            if (regionName.ToLower().Contains("random")) {
+                FString region_flag = "Place";
+                FString left;
+                if (regionName.Contains(" ")) {
+                   regionName.Split(TEXT(" "), &left, &region_flag);
+                    
+                }
+                UE_LOG(LogTemp, Warning, TEXT("Quadrante inicial: %s"), *region_flag);
+                TArray<int> indexes;
+                for (int j = 0; j < regsVacant.Num(); j ++) {
+                    ARegionBox* atual = regsVacant[j];
+                    if (atual->Flags.Contains(region_flag)) {
+                        indexes.Add(j);
+                    }
+                }
+                idx = indexes[FMath::RandRange(0, indexes.Num() - 1)];
+            }
+            else {
+                idx = Locais[regionName];
+            }
             //UE_LOG(LogTemp, Warning, TEXT("Quadrante inicial: %s"), *regsVacant[idx]->GetName());
             FBox quad = regsVacant[idx]->box;
             regsVacant[idx]->numAgents++;
@@ -580,9 +588,28 @@ void ACrowdController::Tick(float DeltaTime) {
             a->inAction = true;
 
             if (bc.getOpcode() == Opcode::GO) {
-                string local = bc.getDestiny();
-                FString regiao(local.c_str());
-                int idx = Locais[regiao];
+                int idx;
+                FString regionName = bc.getDestiny().c_str();
+                if (regionName.ToLower().Contains("random")) {
+                    FString region_flag = "Place";
+                    FString left;
+                    if (regionName.Contains(" ")) {
+                        regionName.Split(TEXT(" "), &left, &region_flag);
+
+                    }
+                    UE_LOG(LogTemp, Warning, TEXT("Quadrante inicial: %s"), *region_flag);
+                    TArray<int> indexes;
+                    for (int j = 0; j < regsVacant.Num(); j++) {
+                        ARegionBox* atual = regsVacant[j];
+                        if (atual->Flags.Contains(region_flag)) {
+                            indexes.Add(j);
+                        }
+                    }
+                    idx = indexes[FMath::RandRange(0, indexes.Num() - 1)];
+                }
+                else {
+                    idx = Locais[regionName];
+                }
                 FBox quad = regsVacant[idx]->box;
                 FNavLocation loc;
                 FVector center = quad.GetCenter();

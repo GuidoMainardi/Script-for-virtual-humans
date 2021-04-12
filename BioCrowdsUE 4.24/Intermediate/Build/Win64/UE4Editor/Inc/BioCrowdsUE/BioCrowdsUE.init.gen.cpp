@@ -21,7 +21,7 @@ void EmptyLinkFunctionForGeneratedCodeBioCrowdsUE_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0xC58056B5,
+				0xCF83A48F,
 				0xFE9319FA,
 				METADATA_PARAMS(nullptr, 0)
 			};

@@ -28,6 +28,11 @@ public:
     
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=SetUp)
     TArray<FString> activities;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = SetUp)
+        TArray<FString> Flags;
+
+
     
 protected:
 	// Called when the game starts or when spawned

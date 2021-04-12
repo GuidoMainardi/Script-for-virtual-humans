@@ -19,6 +19,8 @@ private:
 	string behaviour;
 	string RegionName;
 	string to_String;
+	string profile;
+	bool isAll;
 public:
 	ScriptCommand(string command);
 	bool iequals(const string& a, const string& b);
@@ -30,7 +32,9 @@ public:
 	int getNumberOf() { return numberOf; }
 	string getRegionName() { return RegionName; }
 	string getBehaviour() { return behaviour; }
+	string getProfile() { return profile; }
 	string toString() { return to_String; }
+	bool getIsAll() { return isAll; }
 };
 
 #endif

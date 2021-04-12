@@ -1,2 +1,2 @@
-Create 1 Agent in Sala
+Create 1 Agent in Random South
 Agent 1 time 1 run GoTo

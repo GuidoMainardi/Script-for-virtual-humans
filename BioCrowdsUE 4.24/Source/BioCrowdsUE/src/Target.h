@@ -3,7 +3,8 @@
 
 enum class Target
 {
-	AGENT
+	AGENT,
+	CUSTOM
 };
 #endif
 

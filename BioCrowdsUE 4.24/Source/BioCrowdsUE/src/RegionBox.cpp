@@ -18,6 +18,7 @@ ARegionBox::ARegionBox() {
     MyPtr->SetCanEverAffectNavigation(false);
     bIsEditorOnlyActor = true;
     SetActorHiddenInGame(true);
+    Flags.Add("Place");
 }
 
 // Called when the game starts or when spawned
