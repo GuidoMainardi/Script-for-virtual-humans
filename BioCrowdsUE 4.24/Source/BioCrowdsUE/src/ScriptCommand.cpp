@@ -1,66 +1,51 @@
 #include "ScriptCommand.h"
 
 ScriptCommand::ScriptCommand(string command) {
-	// Agent X time Y run behaviour
-	if (iequals(command.substr(0, 5), "Agent")) {
+	stringstream ss(command);
+	istream_iterator<string> begin(ss);
+	istream_iterator<string> end;
+	vector<string> commandVector(begin, end);
+	copy(commandVector.begin(), commandVector.end(), std::ostream_iterator<std::string>(std::cout, "\n"));
+	int i = 0;
+	if (iequals(commandVector[0], "Create")) {
 
-		int i = 6;
-		target = Target::AGENT;
-		to_String += "Agent ";
-
-		//X
-		target_id = getnumber(&i, command);
-		to_String += to_string(target_id) + " ";
-
-		// time Y
-		if (iequals(command.substr(i, 4), "time")) {
-			i += 5;
-			time = getnumber(&i, command);
-			to_String += "time " + to_string(time) + " ";
-			// run behaviour
-			if (iequals(command.substr(i, 3), "run")) {
-				i += 4;
-				op = Operation::RUN;
-				to_String += "run ";
-
-				behaviour = command.substr(i);
-				
-
-				to_String += behaviour;
-			} // stop
-			else if (iequals(command.substr(i, 4), "stop")) {
-				i += 5;
-				op = Operation::STOP;
-				to_String += "Stop ";
-			}
-		}
-	}
-	// Create X Agent in region
-	if (iequals(command.substr(0, 6), "Create")) {
-		int i = 7;
 		op = Operation::CREATE;
-
-		// X
-		numberOf = getnumber(&i, command);
-
-		// Agent
-		if (iequals(command.substr(i, 5), "Agent")) {
-			target = Target::AGENT;
-			// In region
-			i += 9;
-			RegionName = command.substr(i);
+		numberOf = stoi(commandVector[1]);
+		profile = commandVector[2];
+		for (int j = 4; j < commandVector.size() - 1; j++) {
+			RegionName += commandVector[j] + " ";
 		}
+		RegionName += commandVector[commandVector.size() - 1];
+		to_String += "Create " + to_string(numberOf) + " " + profile + " "+ RegionName;
+		return;
 	}
-}
-
-int ScriptCommand::getnumber(int *i, string str) {
-	int temp;
-	string number = "";
-	for (temp = *i; str.at(temp) != ' '; temp++) {
-		number += str.at(temp);
+	else if(iequals(commandVector[0], "All")) {
+		isAll = true;
+		profile = commandVector[1];
+		to_String += "All " + profile + " ";
 	}
-	*i = temp + 1;
-	return stoi(number);
+	else {
+		
+		profile = commandVector[0];
+		target_id = stoi(commandVector[1]);
+		to_String += profile + " " + to_string(target_id) + " ";
+	}
+	time = stoi(commandVector[3]);
+	to_String += to_string(time) + " ";
+	if (iequals(commandVector[4], "run")) {
+		op = Operation::RUN;
+		behaviour = commandVector[5];
+		to_String += "run " + behaviour;
+	}
+	if (iequals(commandVector[4], "stop")) {
+		op = Operation::STOP;
+		to_String += "Stop";
+	}
+	if (iequals(commandVector[4], "loop")) {
+		op = Operation::LOOP;
+		behaviour = commandVector[5];
+		to_String += "loop " + behaviour;
+	}
 }
 
 bool ScriptCommand::iequals(const string& a, const string& b)

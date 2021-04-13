@@ -1,3 +1,2 @@
-go to Random South
-Play Dance
-go to Banheiro
+go to Random
+go to Sala

@@ -77,6 +77,10 @@ public:
     UAnimBlueprint* Animdefault;
     //Region* reg;
     ARegionBox* reg;
+    //profile
+    FString profile_Name;
+    // loop
+    bool inLoop = false;
 
     UFUNCTION()
     void OnSelected(AActor* TouchedActor, FKey ButtonPressed);

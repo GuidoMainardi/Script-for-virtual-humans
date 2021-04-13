@@ -5,6 +5,7 @@ enum class Operation {
 
 	CREATE,
 	STOP,
+	LOOP,
 	RUN
 
 };

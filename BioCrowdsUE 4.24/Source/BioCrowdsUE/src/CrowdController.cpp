@@ -283,15 +283,10 @@ void ACrowdController::BeginPlay() {
     for (int i = 0; i < regions.Num(); i++) {
         ARegionBox* r = Cast<ARegionBox>(regions[i]);
         regsVacant.Add(r);
-        //UStaticMesh* us = r->MyPtr->GetStaticMesh();
-        //r->box = us->GetBoundingBox();
-        //r->box = r->MyPtr->GetComponentBounds();
         const FTransform world = r->MyPtr->GetComponentTransform();
         FBoxSphereBounds bsb = r->MyPtr->CalcBounds(world);
         r->box = bsb.GetBox();
-        // store region in a map
         RegionName = regions[i]->GetName();
-        //UE_LOG(LogTemp, Warning, TEXT("%s"), *RegionName);
         Locais.Add(RegionName, i);
     }
     int actualNumAgents = 0; // numero de agentes
@@ -556,6 +551,16 @@ void ACrowdController::BeginPlay() {
     /*for(unsigned int i = 0; i < sampler.samples.Num(); i++) {
      AMarkerVis* NewActor = GetWorld()->SpawnActor<AMarkerVis>(sampler.samples[i], FRotator::ZeroRotator);
      }*/
+
+    // load profiles
+    int counter = 0;
+    for (auto c : scene.text) {
+        if (c.getOperation() != Operation::CREATE) { break;}
+        for (int i = 0; i < c.getNumberOf(); i++) {
+            agents[counter]->profile_Name = c.getProfile().c_str();
+            counter++;
+        }
+    }
 }
 
 //----------------------------------------------------------UPDATE EVERY TICK----------------------------------------------------------
@@ -570,23 +575,60 @@ void ACrowdController::Tick(float DeltaTime) {
     tempo += DeltaTime;
     for (auto c : scene.text) {
         if (c.getTime() == int(tempo)) {
-            auto atual = agents[c.getTargetID() - 1];
-            if (c.getOperation() == Operation::RUN) {
-                atual->nowPlaying = FString(c.getBehaviour().c_str());
-                atual->hasSomethingToPlay = true;
-                atual->pc = 0;
+            if (c.getIsAll()) {
+                for (auto agent : agents) {
+                    if (agent->profile_Name == c.getProfile().c_str()) {
+                        if (c.getOperation() == Operation::RUN) {
+                            agent->nowPlaying = FString(c.getBehaviour().c_str());
+                            agent->hasSomethingToPlay = true;
+                            agent->pc = 0;
+                            agent->inLoop = false;
+                        }
+                        if (c.getOperation() == Operation::STOP) {
+                            agent->goal = agents[c.getTargetID() - 1]->GetActorLocation();
+                            agent->hasSomethingToPlay = false;
+                        }
+                        if (c.getOperation() == Operation::LOOP) {
+                            agent->nowPlaying = FString(c.getBehaviour().c_str());
+                            agent->hasSomethingToPlay = true;
+                            agent->pc = 0;
+                            agent->inLoop = true;
+                        }
+                    }
+                }
             }
-            if (c.getOperation() == Operation::STOP) {
-                atual->goal = agents[c.getTargetID() - 1]->GetActorLocation();
-                atual->hasSomethingToPlay = false;
+            else {
+                auto atual = agents[c.getTargetID() - 1];
+                if (c.getOperation() == Operation::RUN) {
+                    atual->nowPlaying = FString(c.getBehaviour().c_str());
+                    atual->hasSomethingToPlay = true;
+                    atual->pc = 0;
+                    atual->inLoop = false;
+                }
+                if (c.getOperation() == Operation::STOP) {
+                    atual->goal = agents[c.getTargetID() - 1]->GetActorLocation();
+                    atual->hasSomethingToPlay = false;
+                }
+                if (c.getOperation() == Operation::LOOP) {
+                    atual->nowPlaying = FString(c.getBehaviour().c_str());
+                    atual->hasSomethingToPlay = true;
+                    atual->pc = 0;
+                    atual->inLoop = true;
+                }
             }
         }
     }
     for (AAgent* a : agents) {
+        if (a->pc > scene.Scripts.find(string(TCHAR_TO_UTF8(*a->nowPlaying)))->second.text.size() && !a->inAction) {
+            if (!a->inLoop) {
+                a->hasSomethingToPlay = false;
+            }
+            a->pc = 0;
+        }
         if (!a->inAction && a->pc < scene.Scripts.find(string(TCHAR_TO_UTF8(*a->nowPlaying)))->second.text.size() && a->hasSomethingToPlay && !a->inAnim) {
+
             BehaviourCommand bc = scene.Scripts.find(string(TCHAR_TO_UTF8(*a->nowPlaying)))->second.text[a->pc];
             a->inAction = true;
-
             if (bc.getOpcode() == Opcode::GO) {
                 int idx;
                 FString regionName = bc.getDestiny().c_str();
@@ -640,10 +682,6 @@ void ACrowdController::Tick(float DeltaTime) {
                 UE_LOG(LogTemp, Warning, TEXT("%d"), a->inAnim);
 
             }
-        }
-        if (a->pc > scene.Scripts.find(string(TCHAR_TO_UTF8(*a->nowPlaying)))->second.text.size() && !a->inAction) {
-            a->hasSomethingToPlay = false;
-            a->pc = 0;
         } 
         FVector vel = a->GetVelocity();
         float dist = FVector::Distance(a->GetActorLocation(), a->finalGoal);

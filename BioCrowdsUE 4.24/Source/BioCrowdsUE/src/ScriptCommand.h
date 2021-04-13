@@ -3,6 +3,8 @@
 #include <string>
 #include <iostream>
 #include <algorithm>
+#include <sstream>
+#include <vector>
 #include "Target.h"
 #include "Operation.h"
 
@@ -11,7 +13,6 @@ using namespace std;
 class ScriptCommand {
 
 private:
-	Target target;
 	int target_id;
 	Operation op;
 	int time;
@@ -20,12 +21,10 @@ private:
 	string RegionName;
 	string to_String;
 	string profile;
-	bool isAll;
+	bool isAll = false;
 public:
 	ScriptCommand(string command);
 	bool iequals(const string& a, const string& b);
-	int getnumber(int *i, string str);
-	Target getTarget() { return target; }
 	int getTargetID() { return target_id; }
 	Operation getOperation() { return op; }
 	int getTime() { return time; }

@@ -1,2 +1,2 @@
-Create 1 Agent in Random South
-Agent 1 time 1 run GoTo
+Create 2 Walker in Random South
+All Walker time 1 run GoTo

@@ -249,6 +249,7 @@ C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.2
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\INCLUDE\xtree
 D:\TCC\Pojeto\Script-for-virtual-humans\BioCrowdsUE 4.24\Source\BioCrowdsUE\src\ScriptCommand.h
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\INCLUDE\algorithm
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\INCLUDE\sstream
 D:\TCC\Pojeto\Script-for-virtual-humans\BioCrowdsUE 4.24\Source\BioCrowdsUE\src\Target.h
 D:\TCC\Pojeto\Script-for-virtual-humans\BioCrowdsUE 4.24\Source\BioCrowdsUE\src\Operation.h
 D:\TCC\Pojeto\Script-for-virtual-humans\BioCrowdsUE 4.24\Source\BioCrowdsUE\src\Script.h
