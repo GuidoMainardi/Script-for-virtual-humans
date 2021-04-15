@@ -24,6 +24,19 @@ ScriptCommand::ScriptCommand(string command) {
 		profile = commandVector[1];
 		to_String += "All " + profile + " ";
 	}
+	else if (iequals(commandVector[0], "When")) {
+		op = Operation::WHEN;
+		profile = commandVector[1];
+		RegionName = commandVector[3];
+		string event = "";
+		for (int j = 4; j < commandVector.size() -1; j++) {
+			event += commandVector[j] + " ";
+		}
+		event += commandVector[commandVector.size() - 1];
+		Event = new ScriptCommand(event);
+		behaviour = Event->getBehaviour();
+		return;
+	}
 	else {
 		
 		profile = commandVector[0];
@@ -31,7 +44,7 @@ ScriptCommand::ScriptCommand(string command) {
 		to_String += profile + " " + to_string(target_id) + " ";
 	}
 	time = stoi(commandVector[3]);
-	to_String += to_string(time) + " ";
+	to_String += "time " + to_string(time) + " ";
 	if (iequals(commandVector[4], "run")) {
 		op = Operation::RUN;
 		behaviour = commandVector[5];

@@ -22,6 +22,7 @@ private:
 	string to_String;
 	string profile;
 	bool isAll = false;
+	ScriptCommand* Event;
 public:
 	ScriptCommand(string command);
 	bool iequals(const string& a, const string& b);
@@ -34,6 +35,7 @@ public:
 	string getProfile() { return profile; }
 	string toString() { return to_String; }
 	bool getIsAll() { return isAll; }
+	ScriptCommand* getEvent() { return Event; }
 };
 
 #endif

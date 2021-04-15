@@ -40,6 +40,26 @@ public:
     TArray<ALeader*> leaders;
     TArray<AFollower*> CreateFollowers(AAgent* lead, FVector loc, int numFollow, ARecastNavMesh* navMesh, FNavLocation g, int depth);
 
+    //Main script functions
+    void Run_MainScriptCommand(ScriptCommand command);
+    void Run_SimpleOperation(ScriptCommand command, AAgent* agent);
+    void Run_OperationRUN(ScriptCommand command, AAgent* agent);
+    void Run_OperationSTOP(ScriptCommand command, AAgent* agent);
+    void Run_OperationLOOP(ScriptCommand command, AAgent* agent);
+    //Behaviour Script functions
+    void Run_AgentBehaviour(AAgent* agent, float DeltaTime);
+    void Run_EndScript(AAgent* agent);
+    void Run_BehaviourOperation(AAgent* agent);
+    void Run_OpCodeGo(AAgent* agent, FString Destiny);
+    void Run_OpCodePlay(AAgent* agent);
+    void Run_EndAction(AAgent* agent, float DeltaTime);
+    // random location function
+    int get_LocationIndex(FString regionName);
+    // condition events
+    bool EventHandler();
+    TMap<FString, TArray<ScriptCommand>> conditionsEvents;
+
+
     //TArray<FBox> quads;
     //TArray<int> qNumAgents;
 
@@ -49,7 +69,7 @@ public:
     TArray<ARegionBox*> regsFull;
     TMap<FString, int> Locais;
     Scenario scene;
-    float tempo;
+    float time;
     //TArray<AAIController*> aic; //faster than getting controller each time? make sure matches up
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=SetUp)

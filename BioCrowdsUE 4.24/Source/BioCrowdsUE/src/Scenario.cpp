@@ -10,6 +10,7 @@ Scenario::Scenario()
 
 int Scenario::load()
 {
+    pc = 0;
     FString file = "";
     //UE_LOG(LogTemp, Warning, TEXT("%s"), *fName);
     UFIleReader::LoadTxt(fName, file);

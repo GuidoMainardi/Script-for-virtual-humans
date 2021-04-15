@@ -16,6 +16,8 @@ AAgent::AAgent()
     
 	ConstructorHelpers::FObjectFinder<UPhysicsAsset>PhysRef(TEXT("PhysicsAsset'/Game/Mannequin/Character/Mesh/SK_Mannequin_PhysicsAsset.SK_Mannequin_PhysicsAsset'"));
     Animdefault = AnimRef.Object;
+
+
     ConstructorHelpers::FObjectFinder<UAnimSequence>AnimSequence(TEXT("AnimSequence'/Game/Mannequin/Animations/Dance.Dance'"));
     Animations.Add(TEXT("Dance"), AnimSequence.Object);
     

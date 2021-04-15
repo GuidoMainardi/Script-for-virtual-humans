@@ -15,12 +15,11 @@ BehaviourCommand::BehaviourCommand(string command){
 
 			instruction = Instruction::TO;
 			to_String += "To ";
-			//place = getnumber(7, command);
 			destiny = command.substr(6);
 			if (destiny[destiny.size() - 1] == '\r' || destiny[destiny.size() - 1] == '\n') {
 				destiny = destiny.substr(0, destiny.size() - 1);
 			}
-			to_String += place.tostring();
+			to_String += destiny;
 		}
 	}
 	//Play
@@ -30,6 +29,7 @@ BehaviourCommand::BehaviourCommand(string command){
 		to_String += "Play ";
 
 		destiny = command.substr(5);
+		to_String += destiny;
 	}
 }
 
@@ -39,28 +39,4 @@ bool BehaviourCommand::iequals(const string& a, const string& b)
 					[](char a, char b) {
 						return tolower(a) == tolower(b);
 					});
-}
-
-Position BehaviourCommand::getnumber(int i, string str) {
-	int x = 0, y = 0, z = 0;
-	string number = "";
-	for (; str.at(i) != ','; i++) {
-		number += str.at(i);
-	}
-	i++;
-	x = stoi(number);
-	number = "";
-	for (; str.at(i) != ','; i++) {
-		number += str.at(i);
-	}
-	i++;
-	y = stoi(number);
-	number = "";
-	for (; str.at(i) != ')'; i++) {
-		number += str.at(i);
-	}
-	i++;
-	z = stoi(number);
-	Position temp(x, y, z);
-	return temp;
 }

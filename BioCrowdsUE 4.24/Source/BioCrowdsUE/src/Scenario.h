@@ -23,11 +23,8 @@ public:
     int pc;
     vector<ScriptCommand> text;
     map<string, Script> Scripts;
-    //map<int, string> Agents;
-    //string to_String;
     Scenario();
     int load();
-    //void runnnnnn();
     string toString();
 };
 #endif

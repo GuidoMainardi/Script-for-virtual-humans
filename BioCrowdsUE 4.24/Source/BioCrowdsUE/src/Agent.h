@@ -81,6 +81,8 @@ public:
     FString profile_Name;
     // loop
     bool inLoop = false;
+    // location control
+    FString CurrentLocation;
 
     UFUNCTION()
     void OnSelected(AActor* TouchedActor, FKey ButtonPressed);

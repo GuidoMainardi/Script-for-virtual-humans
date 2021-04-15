@@ -1,2 +1,2 @@
-go to Random
-go to Sala
+go to Banheiro
+go to Quarto

@@ -32,6 +32,7 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = SetUp)
         TArray<FString> Flags;
 
+    TArray<FString> ProfilesInThisPlace;
 
     
 protected:

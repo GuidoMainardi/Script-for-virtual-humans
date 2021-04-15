@@ -1,2 +1,4 @@
 Create 2 Walker in Random South
-All Walker time 1 run GoTo
+When Walker in Sala Walker 1 time 1 run GoTo3
+All Walker time 1 loop Goto
+Walker 2 time 6 run Goto2
