@@ -1,4 +1,5 @@
-Create 2 Walker in Random South
-When Walker in Sala Walker 1 time 1 run GoTo3
-All Walker time 1 loop Goto
-Walker 2 time 6 run Goto2
+Create 2 Walker as Macarena in Random South
+Create 1 Agent in Kitchen
+When Walker in Room All Walker time 0 run Party
+All Walker time 1 loop Walking
+Agent 3 time 3 run GoToRoom

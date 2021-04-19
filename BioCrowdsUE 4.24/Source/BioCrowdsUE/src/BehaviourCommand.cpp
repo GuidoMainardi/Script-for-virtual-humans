@@ -2,33 +2,46 @@
 
 BehaviourCommand::BehaviourCommand(string command){
 
+	stringstream ss(command);
+	istream_iterator<string> begin(ss);
+	istream_iterator<string> end;
+	vector<string> commandVector(begin, end);
+	copy(commandVector.begin(), commandVector.end(), std::ostream_iterator<std::string>(std::cout, "\n"));
+
 	to_String = "";
 
 	//Go
-	if (iequals(command.substr(0, 2), "Go")) {
+	if (iequals(commandVector[0], "Go")) {
 
 		opcode = Opcode::GO;
 		to_String += "Go ";
 
 		//To
-		if (iequals(command.substr(3, 2), "To")) {
+		if (iequals(commandVector[1], "To")) {
 
 			instruction = Instruction::TO;
 			to_String += "To ";
-			destiny = command.substr(6);
-			if (destiny[destiny.size() - 1] == '\r' || destiny[destiny.size() - 1] == '\n') {
-				destiny = destiny.substr(0, destiny.size() - 1);
+			for (int i = 2; i < commandVector.size() - 1; i++) {
+				destiny += commandVector[i] + " ";
 			}
+			destiny += commandVector[commandVector.size() - 1];
+			//if (destiny[destiny.size() - 1] == '\r' || destiny[destiny.size() - 1] == '\n') {
+			//	destiny = destiny.substr(0, destiny.size() - 1);
+			//}
 			to_String += destiny;
 		}
 	}
 	//Play
-	else if (iequals(command.substr(0, 4), "Play")) {
+	else if (iequals(commandVector[0], "Play")) {
 
 		opcode = Opcode::PLAY;
 		to_String += "Play ";
 
-		destiny = command.substr(5);
+		for (int i = 1; i < commandVector.size() - 1; i++) {
+			destiny += commandVector[i] + " ";
+		}
+		destiny += commandVector[commandVector.size() - 1];
+
 		to_String += destiny;
 	}
 }

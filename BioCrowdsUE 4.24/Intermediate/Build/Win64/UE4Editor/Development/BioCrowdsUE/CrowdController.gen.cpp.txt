@@ -437,7 +437,6 @@ D:\TCC\Pojeto\Script-for-virtual-humans\BioCrowdsUE 4.24\Source\BioCrowdsUE\src\
 D:\TCC\Pojeto\Script-for-virtual-humans\BioCrowdsUE 4.24\Source\BioCrowdsUE\src\Script.h
 D:\TCC\Pojeto\Script-for-virtual-humans\BioCrowdsUE 4.24\Source\BioCrowdsUE\src\BehaviourCommand.h
 D:\TCC\Pojeto\Script-for-virtual-humans\BioCrowdsUE 4.24\Source\BioCrowdsUE\src\Instruction.h
-D:\TCC\Pojeto\Script-for-virtual-humans\BioCrowdsUE 4.24\Source\BioCrowdsUE\src\Position.h
 D:\TCC\Pojeto\Script-for-virtual-humans\BioCrowdsUE 4.24\Source\BioCrowdsUE\src\Opcode.h
 D:\TCC\Pojeto\Script-for-virtual-humans\BioCrowdsUE 4.24\Source\BioCrowdsUE\src\FIleReader.h
 D:\TCC\Pojeto\Script-for-virtual-humans\BioCrowdsUE 4.24\Intermediate\Build\Win64\UE4Editor\Inc\BioCrowdsUE\FIleReader.generated.h

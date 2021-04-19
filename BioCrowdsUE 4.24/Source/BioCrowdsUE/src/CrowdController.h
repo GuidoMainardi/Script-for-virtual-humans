@@ -51,12 +51,13 @@ public:
     void Run_EndScript(AAgent* agent);
     void Run_BehaviourOperation(AAgent* agent);
     void Run_OpCodeGo(AAgent* agent, FString Destiny);
-    void Run_OpCodePlay(AAgent* agent);
+    void Run_OpCodePlay(AAgent* agent, FString animation);
     void Run_EndAction(AAgent* agent, float DeltaTime);
     // random location function
     int get_LocationIndex(FString regionName);
     // condition events
-    bool EventHandler();
+    void EventHandler();
+    int NewPositions(AAgent* agent, FString Destiny);
     TMap<FString, TArray<ScriptCommand>> conditionsEvents;
 
 

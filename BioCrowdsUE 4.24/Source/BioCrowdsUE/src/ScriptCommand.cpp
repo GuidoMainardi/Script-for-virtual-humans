@@ -12,11 +12,20 @@ ScriptCommand::ScriptCommand(string command) {
 		op = Operation::CREATE;
 		numberOf = stoi(commandVector[1]);
 		profile = commandVector[2];
-		for (int j = 4; j < commandVector.size() - 1; j++) {
-			RegionName += commandVector[j] + " ";
+		to_String += "Create " + to_string(numberOf) + " " + profile + " ";
+		if (iequals(commandVector[3], "as")) {
+			i = 6;
+			model = commandVector[4];
+			to_String += "as " + model + " ";
+			hasModel = true;
+		}else {
+			i = 4;
+		}
+		for (; i < commandVector.size() - 1; i++) {
+			RegionName += commandVector[i] + " ";
 		}
 		RegionName += commandVector[commandVector.size() - 1];
-		to_String += "Create " + to_string(numberOf) + " " + profile + " "+ RegionName;
+		to_String += "in "+ RegionName;
 		return;
 	}
 	else if(iequals(commandVector[0], "All")) {

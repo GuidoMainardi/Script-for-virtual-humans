@@ -4,33 +4,40 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Components/CapsuleComponent.h"
 
-
+void AAgent::MyModels(){
+    ConstructorHelpers::FObjectFinder<USkeletalMesh>MacerenaMeshRef(TEXT("SkeletalMesh'/Game/Mannequin/Character/Mesh/Macarena_Dance.Macarena_Dance'"));
+    Models.Add(TEXT("Macarena"), MacerenaMeshRef.Object);
+    ConstructorHelpers::FObjectFinder<USkeletalMesh>DefaultMeshRef(TEXT("SkeletalMesh'/Game/Mannequin/Character/Mesh/SK_Mannequin.SK_Mannequin'"));
+    Models.Add(TEXT("Default"), DefaultMeshRef.Object);
+}
+void AAgent::MyPhysics() {
+    ConstructorHelpers::FObjectFinder<UPhysicsAsset>MacarenaPhysRef(TEXT("PhysicsAsset'/Game/Mannequin/Character/Mesh/Macarena_Dance_PhysicsAsset.Macarena_Dance_PhysicsAsset'"));
+    Physics.Add(TEXT("Macarena"), MacarenaPhysRef.Object);
+    ConstructorHelpers::FObjectFinder<UPhysicsAsset>DefaultPhysRef(TEXT("PhysicsAsset'/Game/Mannequin/Character/Mesh/SK_Mannequin_PhysicsAsset.SK_Mannequin_PhysicsAsset'"));
+    Physics.Add(TEXT("Default"), DefaultPhysRef.Object);
+}
+void AAgent::MyDefaultAnimations() {
+    ConstructorHelpers::FObjectFinder<UAnimBlueprint>MacarenaDefaultAnimRef(TEXT("AnimBlueprint'/Game/Mannequin/Animations/ThirdPerson_AnimBP_Macarena.ThirdPerson_AnimBP_Macarena'"));
+    DefaultAnims.Add(TEXT("Macarena"), MacarenaDefaultAnimRef.Object);
+    ConstructorHelpers::FObjectFinder<UAnimBlueprint>DefaultAnimRef(TEXT("AnimBlueprint'/Game/Mannequin/Animations/ThirdPerson_AnimBP.ThirdPerson_AnimBP'"));
+    DefaultAnims.Add(TEXT("Default"), DefaultAnimRef.Object);
+}
+void AAgent::MyAnim() {
+    ConstructorHelpers::FObjectFinder<UAnimSequence>DefaultMeshDanceAnim(TEXT("AnimSequence'/Game/Mannequin/Animations/Dance.Dance'"));
+    Animations.Add(TEXT("Dance"), DefaultMeshDanceAnim.Object);
+    ConstructorHelpers::FObjectFinder<UAnimSequence>MacarenaMeshDanceAnim(TEXT("AnimSequence'/Game/Mannequin/Animations/Macarena_Dance_Anim.Macarena_Dance_Anim'"));
+    Animations.Add(TEXT("MacarenaDance"), MacarenaMeshDanceAnim.Object);
+}
 // Can't use constructors when calling spawn actor
 AAgent::AAgent()
 {
     PrimaryActorTick.bCanEverTick = true;
-    
-	ConstructorHelpers::FObjectFinder<USkeletalMesh>MeshRef(TEXT("SkeletalMesh'/Game/Mannequin/Character/Mesh/SK_Mannequin.SK_Mannequin'"));
-    
-	ConstructorHelpers::FObjectFinder<UAnimBlueprint>AnimRef(TEXT("AnimBlueprint'/Game/Mannequin/Animations/ThirdPerson_AnimBP.ThirdPerson_AnimBP'"));
-    
-	ConstructorHelpers::FObjectFinder<UPhysicsAsset>PhysRef(TEXT("PhysicsAsset'/Game/Mannequin/Character/Mesh/SK_Mannequin_PhysicsAsset.SK_Mannequin_PhysicsAsset'"));
-    Animdefault = AnimRef.Object;
 
-
-    ConstructorHelpers::FObjectFinder<UAnimSequence>AnimSequence(TEXT("AnimSequence'/Game/Mannequin/Animations/Dance.Dance'"));
-    Animations.Add(TEXT("Dance"), AnimSequence.Object);
-    
-    
-    USkeletalMesh* MeshObj = MeshRef.Object;
-    
-    MySkeleton = GetMesh();
-    MySkeleton->SetSkeletalMesh(MeshRef.Object);
-    MySkeleton->SetPhysicsAsset(PhysRef.Object);
-    
-    MySkeleton->SetAnimInstanceClass(AnimRef.Object->GeneratedClass);
-    
-    MySkeleton->SetRelativeLocationAndRotation(FVector(0, 0, -90), FRotator(0, -90, 0));
+    MyAnim();
+    MyModels();
+    MyPhysics();
+    MyDefaultAnimations();
+    setNewModel("Default");
 
     //three orientation variables
     bUseControllerRotationYaw = false;

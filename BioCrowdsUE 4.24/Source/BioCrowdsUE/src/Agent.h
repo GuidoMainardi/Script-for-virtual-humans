@@ -43,6 +43,9 @@ public:
     TArray<FVector> path;
     TArray<AMarkerVis*> mVis;
     TMap<FString, UAnimSequence*> Animations;
+    TMap<FString, UAnimBlueprint*> DefaultAnims;
+    TMap<FString, USkeletalMesh*> Models;
+    TMap<FString, UPhysicsAsset*> Physics;
 
     //Behavior
     ATextRenderActor* text;
@@ -75,6 +78,9 @@ public:
     float animtime = 0.f;
     FString AnimName = "";
     UAnimBlueprint* Animdefault;
+    //models
+    USkeletalMesh* MeshObj;
+    FString modelName = "Default";
     //Region* reg;
     ARegionBox* reg;
     //profile
@@ -83,6 +89,13 @@ public:
     bool inLoop = false;
     // location control
     FString CurrentLocation;
+    // models and  animations
+    void MyModels();
+    void MyAnim();
+    void MyPhysics();
+    void MyDefaultAnimations();
+    // motion
+    float waiting_time = 0;
 
     UFUNCTION()
     void OnSelected(AActor* TouchedActor, FKey ButtonPressed);
@@ -94,7 +107,24 @@ public:
 
     void playAnimation(FString AnimName) {
         this->AnimName = AnimName;
+        //UE_LOG(LogTemp, Warning, TEXT("Playing: %s"), *AnimName);
         GetMesh()->PlayAnimation(Animations[AnimName], false);
+    }
+
+    void setNewModel(FString modelName) {
+
+        USkeletalMesh* TempMeshRef = Models[modelName];
+        UPhysicsAsset* TempPhysRef = Physics[modelName];
+
+        MeshObj = TempMeshRef;
+
+        MySkeleton = GetMesh();
+        MySkeleton->SetSkeletalMesh(TempMeshRef, false);
+        MySkeleton->SetPhysicsAsset(TempPhysRef, false);
+
+        MySkeleton->SetAnimInstanceClass(DefaultAnims[modelName]->GeneratedClass);
+
+        MySkeleton->SetRelativeLocationAndRotation(FVector(0, 0, -90), FRotator(0, -90, 0));
     }
 
 protected:

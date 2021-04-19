@@ -278,7 +278,7 @@ void ACrowdController::BeginPlay() {
     //find all regions and store
     TArray<AActor*> regions;
     UGameplayStatics::GetAllActorsOfClass(GetWorld(), ARegionBox::StaticClass(), regions);
-    UE_LOG(LogTemp, Warning, TEXT("%d"), regions.Num());
+   // UE_LOG(LogTemp, Warning, TEXT("%d"), regions.Num());
     FString RegionName;
     for (int i = 0; i < regions.Num(); i++) {
         ARegionBox* r = Cast<ARegionBox>(regions[i]);
@@ -542,6 +542,11 @@ void ACrowdController::BeginPlay() {
             for (int i = 0; i < c.getNumberOf(); i++) {
                 agents[counter]->profile_Name = c.getProfile().c_str();
                 agents[counter]->CurrentLocation = c.getRegionName().c_str();
+                // check if has model
+                if (c.gethasModel()) {
+                    agents[counter]->setNewModel(c.getModel().c_str());
+                    agents[counter]->modelName = c.getModel().c_str();
+                }
                 counter++;
             }
         }else if (c.getOperation() == Operation::WHEN) {
@@ -582,6 +587,7 @@ int ACrowdController::get_LocationIndex(FString regionName) {
     }
     return idx;
 }
+
 // Playing Main Script funcions
 
 //play script command
@@ -615,12 +621,12 @@ void ACrowdController::Run_SimpleOperation(ScriptCommand command, AAgent* agent)
         Run_OperationLOOP(command, agent);
     }
     else {
-        UE_LOG(LogTemp, Warning, TEXT("coisas estranhas aconteceram!"));
+        UE_LOG(LogTemp, Warning, TEXT("Dangerous area!"));
     }
 }
+
 // run run hehe
 void ACrowdController::Run_OperationRUN(ScriptCommand command, AAgent* agent) {
-    UE_LOG(LogTemp, Warning, TEXT("entrei no run!"));
     agent->nowPlaying = FString(command.getBehaviour().c_str());
     agent->hasSomethingToPlay = true;
     agent->pc = 0;
@@ -629,6 +635,7 @@ void ACrowdController::Run_OperationRUN(ScriptCommand command, AAgent* agent) {
     agent->inAnim = false;
 
 }
+
 // run stop
 void ACrowdController::Run_OperationSTOP(ScriptCommand command, AAgent* agent) {
     agent->nowPlaying = "";
@@ -638,6 +645,7 @@ void ACrowdController::Run_OperationSTOP(ScriptCommand command, AAgent* agent) {
     agent->inAction = false;
     agent->inAnim = false;
 }
+
 // run loop
 void ACrowdController::Run_OperationLOOP(ScriptCommand command, AAgent* agent) {
     agent->nowPlaying = FString(command.getBehaviour().c_str());
@@ -651,35 +659,30 @@ void ACrowdController::Run_OperationLOOP(ScriptCommand command, AAgent* agent) {
 // behaviour script functions
 void ACrowdController::Run_AgentBehaviour(AAgent* agent, float DeltaTime)  {
 
-    int instruction_playing = agent->pc;
     int number_script_instructions = scene.Scripts.find(string(TCHAR_TO_UTF8(*agent->nowPlaying)))->second.text.size();
     bool isAgentFree = !agent->inAction && !agent->inAnim;
     
-    if (instruction_playing >= number_script_instructions && isAgentFree) {
+    if (agent->pc >= number_script_instructions && isAgentFree) {
+        //UE_LOG(LogTemp, Warning, TEXT("rodando agora: %s"), *agent->nowPlaying);
         Run_EndScript(agent);
     } 
-    if (isAgentFree && instruction_playing < number_script_instructions && agent->hasSomethingToPlay) {
-        UE_LOG(LogTemp, Warning, TEXT("rodando agora: %s"), *agent->nowPlaying);
+    if (isAgentFree && agent->pc < number_script_instructions && agent->hasSomethingToPlay) {
+        //UE_LOG(LogTemp, Warning, TEXT("rodando agora: %s"), *agent->nowPlaying);
         Run_BehaviourOperation(agent);     
-        if (EventHandler()) {
-           // for (AAgent* agent : agents) {
-                //UE_LOG(LogTemp, Warning, TEXT("rodando agora: %s"), *agent->nowPlaying);
-            //    Run_AgentBehaviour(agent, DeltaTime);
-           // }
-        }
-        //UE_LOG(LogTemp, Warning, TEXT("Script walker 1: %s"), *agents[0]->nowPlaying);
     }
     Run_EndAction(agent, DeltaTime);
 }
 
+// check script end  and finish all actions
 void ACrowdController::Run_EndScript(AAgent* agent) {
-    if (!agent->inLoop) { // if agent not in loop end the play section
+    // if agent not in loop end the run section
+    if (!agent->inLoop) { 
         agent->hasSomethingToPlay = false;
     }
-    agent->pc = 0;
-   
+    agent->pc = 0; 
 }
 
+// run simple behaviour operation
 void ACrowdController::Run_BehaviourOperation(AAgent* agent) {
     BehaviourCommand bc = scene.Scripts.find(string(TCHAR_TO_UTF8(*agent->nowPlaying)))->second.text[agent->pc];
     agent->inAction = true;
@@ -689,22 +692,23 @@ void ACrowdController::Run_BehaviourOperation(AAgent* agent) {
     }
 
     if (bc.getOpcode() == Opcode::PLAY) {
-        Run_OpCodePlay(agent);
+        Run_OpCodePlay(agent, bc.getDestiny().c_str());
     }
 }
 
+// run go to behaviour
 void ACrowdController::Run_OpCodeGo(AAgent* agent, FString Destiny) {
+    // reseting animation
+    agent->animtime = 0.f;
+    agent->inAnim = false;
+    agent->MySkeleton->SetAnimInstanceClass(agent->DefaultAnims[agent->modelName]->GeneratedClass);
+    agent->waiting_time = 0;
 
     UNavigationSystemV1* navSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
     ARecastNavMesh* navMesh = navSys ? Cast<ARecastNavMesh>(navSys->GetDefaultNavDataInstance()) : nullptr;
     // remove agent in old regionbox
-    int idx = get_LocationIndex(agent->CurrentLocation);
-    ARegionBox* oldlocationbox = regsVacant[idx];
-    oldlocationbox->ProfilesInThisPlace.Remove(agent->profile_Name);
-    // add agent in new regionbox
-    idx = get_LocationIndex(Destiny);
-    ARegionBox* newlocationbox = regsVacant[idx];
-    newlocationbox->ProfilesInThisPlace.Add(agent->profile_Name);
+    int idx = NewPositions(agent, Destiny);
+
     // get target region box
     FBox quad = regsVacant[idx]->box;
     FNavLocation loc;
@@ -734,15 +738,23 @@ void ACrowdController::Run_OpCodeGo(AAgent* agent, FString Destiny) {
 
 }
 
-void ACrowdController::Run_OpCodePlay(AAgent* agent) {
+// run play behaviour
+void ACrowdController::Run_OpCodePlay(AAgent* agent, FString animation) {
+    //reseting goal
+    agent->goal = agent->GetActorLocation();
+
     agent->inAnim = true;
-    agent->playAnimation("Dance");
+    agent->playAnimation(animation);
 }
 
 // end the action the agent is playing and go to the next one
 void ACrowdController::Run_EndAction(AAgent* agent, float DeltaTime) {
     float dist = FVector::Distance(agent->GetActorLocation(), agent->finalGoal);
-    if (dist < 101) {
+    FVector vel = agent->GetVelocity();
+    if (FMath::Abs(vel.X) == 0 && FMath::Abs(vel.Y) == 0) {
+        agent->waiting_time += DeltaTime;
+    }
+    if (dist < 20 || agent->waiting_time > 1.f){
         if (agent->inAction) {
             agent->inAction = false;
         }
@@ -751,17 +763,19 @@ void ACrowdController::Run_EndAction(AAgent* agent, float DeltaTime) {
             if (agent->animtime >= agent->Animations[agent->AnimName]->GetPlayLength()) {
                 agent->animtime = 0.f;
                 agent->inAnim = false;
-                agent->MySkeleton->SetAnimInstanceClass(agent->Animdefault->GeneratedClass);
+                agent->MySkeleton->SetAnimInstanceClass(agent->DefaultAnims[agent->modelName]->GeneratedClass);
             }
         }
         if (!agent->inAction && !agent->inAnim) {
             agent->pc++;
         }
     }
+    
 }
 
 // event handler
-bool ACrowdController::EventHandler() {
+void ACrowdController::EventHandler() {
+
     for (auto Event : conditionsEvents) {
         FString profile;
         FString place;
@@ -772,13 +786,31 @@ bool ACrowdController::EventHandler() {
             placeBox->ProfilesInThisPlace.Remove(profile);
             for (auto command : Event.Value) {
                 FString comando = command.toString().c_str();
-                UE_LOG(LogTemp, Warning, TEXT("Cheguei aqui com o comando: %s"), *comando);
+                //UE_LOG(LogTemp, Warning, TEXT("Cheguei aqui com o comando: %s"), *comando);
                 Run_MainScriptCommand(command);
             }
-            return true;
+            
         }
     }
-    return false;
+}
+
+int ACrowdController::NewPositions(AAgent* agent, FString Destiny) {
+    // get atual region box
+    int idx = get_LocationIndex(agent->CurrentLocation);
+    ARegionBox* currentbox = regsVacant[idx];
+    // remove from atualregion box
+    currentbox->ProfilesInThisPlace.Remove(agent->profile_Name);
+    
+
+    // add agent in new regionbox
+    idx = get_LocationIndex(Destiny);
+    ARegionBox* newbox = regsVacant[idx];
+    newbox->ProfilesInThisPlace.Add(agent->profile_Name);
+    if (!agent->CurrentLocation.Equals(Destiny)) {
+        EventHandler();
+    }
+    agent->CurrentLocation = newbox->GetName();
+    return idx;
 }
 
 //----------------------------------------------------------UPDATE EVERY TICK----------------------------------------------------------
