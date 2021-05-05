@@ -52,20 +52,27 @@ ScriptCommand::ScriptCommand(string command) {
 		target_id = stoi(commandVector[1]);
 		to_String += profile + " " + to_string(target_id) + " ";
 	}
-	time = stoi(commandVector[3]);
+	if (iequals(commandVector[2], "time")) {
+		time = stoi(commandVector[3]);
+		i = 4;
+	}
+	else {
+		time = 0;
+		i = 2;
+	}
 	to_String += "time " + to_string(time) + " ";
-	if (iequals(commandVector[4], "run")) {
+	if (iequals(commandVector[i], "run")) {
 		op = Operation::RUN;
-		behaviour = commandVector[5];
+		behaviour = commandVector[i + 1];
 		to_String += "run " + behaviour;
 	}
-	if (iequals(commandVector[4], "stop")) {
+	if (iequals(commandVector[i], "stop")) {
 		op = Operation::STOP;
 		to_String += "Stop";
 	}
-	if (iequals(commandVector[4], "loop")) {
+	if (iequals(commandVector[i], "loop")) {
 		op = Operation::LOOP;
-		behaviour = commandVector[5];
+		behaviour = commandVector[i + 1];
 		to_String += "loop " + behaviour;
 	}
 }

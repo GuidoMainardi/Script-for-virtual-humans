@@ -1,5 +1,5 @@
 Create 2 Walker as Macarena in Random South
 Create 1 Agent in Kitchen
-When Walker in Room All Walker time 0 run Party
+When Walker in Room All Walker run Party
 All Walker time 1 loop Walking
-Agent 3 time 3 run GoToRoom
+Agent 3 time 3 run Party
