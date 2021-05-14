@@ -9,37 +9,40 @@
 
 Antes de começar a usar os scripts é necessário criar e mapear o ambiente que será usado no projeto, para este tutorial foi escolhida uma casa simples que vai ser modelada e usada para demonstrar os comandos existentes.
 
-(foto da casa)
+![Casa](https://user-images.githubusercontent.com/48321393/118320533-c5d2f200-b4d2-11eb-9c2d-42ba912bad04.jpg)
+
 
 ### Cenário inicial
 
 O primeiro passo é criar o cenário e adicionar uma navmesh nele, para que ela nos ajude a encontrar os caminhos de um ponto ao outro.
 
-(foto do cenário modelado com a navmesh)
+![Cenario](https://user-images.githubusercontent.com/48321393/118320557-cd929680-b4d2-11eb-8f95-68a2b3723561.png)
 
 Depois de ter o cenário inicial, é preciso fazer um mapeamento dele usando as RegionBox. Cada RegionBox vai preencher um lugar no cenário e vai representar a área deste lugar. No caso da casa, temos a cozinha, a sala, o quarto e o banheiro, para cada um desses cômodos nós vamos criar uma RegionBox com o nome deste cômodo.
 
-(foto do cenário mapeado com as regionBoxes)
+![ReginBoxes](https://user-images.githubusercontent.com/48321393/118320564-d1beb400-b4d2-11eb-9c9c-f1d9f4dab4cb.png)
 
 Com o lugar criado e mapeado existe uma última configuração que pode ou nao ser feita, em cada RegionBox existe um atributo chamado "flags", que pode ser adicionado novos valores nele, por padrão todas RegionBox são inicializadas como "Place", porém pode-se adicionar novas marcações, para que seja possível limitar os comandos referentes a lugares aleatórios (caso desejado).
 
-(mostrar foto das "flags”)
+![Flags](https://user-images.githubusercontent.com/48321393/118320579-d6836800-b4d2-11eb-8c0e-77bf644e3bda.png)
 
 ### Modelos
 
 Para que seja possível utilizar novos modelos é preciso inserir eles no projeto primeiro e fazer uma pequena máquina de estados para definir as animações de parado, andando e correndo. Além disso, também é necessário criar as regiões de colisão deste modelo que vai ser utilizado.
 
-(mostrar foto do modelo, da máquina de estados e da colisão)
+![Maquina de estados](https://user-images.githubusercontent.com/48321393/118320597-db481c00-b4d2-11eb-82af-138a032ddcd6.png)
 
 Por último, precisa ser adicionado no código "Agent.cpp" o caminho de cada coisa criada pelo novo modelo e adicionar no map com o nome que você deseja utilizar quando for se referir a eles nos scripts. 
 
-(mostrar foto pegando o caminho e adicionando os valores no Agent.cpp e no map)
+![Modelo Referencia](https://user-images.githubusercontent.com/48321393/118320620-e438ed80-b4d2-11eb-9d26-875670bcbc2c.png)
+![references AgentCpp](https://user-images.githubusercontent.com/48321393/118320643-e7cc7480-b4d2-11eb-9660-d0fbc12a2bec.png)
+
 
 ### Animações
 
 Para adicionar animações o processo é parecido com os modelos da seção acima, precisa adicionar a animação no projeto e depois colocar o caminho dela no "Agent.cpp" salvando ele no map com o nome que vai ser usado no script. Uma coisa para se cuidar é que as animações são ligadas ao modelo, então cada modelo deve ter a sua animação e ter um nome diferente no map, como por exemplo as animações de "dance" e "macarenaDance", que são iguais, porem para modelos diferentes.
 
-(mostrar foto adicionando as animações no Agent.cpp)
+![anim references Agentcpp](https://user-images.githubusercontent.com/48321393/118320664-ee5aec00-b4d2-11eb-9dc8-9303ec9e1e06.png)
 
 ## Perfil
 
@@ -47,9 +50,9 @@ Perfil é a principal forma de distinguir os agentes, quando eles são criados e
 
 ## Comandos
 
-Com todo o cenário configurado, pode-se começar a escrever os scripts para comandar os agentes. Existem dois tipos de Scripts, o principal, que tem os comandos de inicialização e de eventos, e os de comportamento, que descrevem sequências de ações que serão executadas uma logo ao término da outra. O script principal deve ser chamado de "Script.txt" (mudar este nome), já os scripts de comportamento podem ter nomes arbitrários. Os nomes dos scripts de comportamento vão ser utilizados para referenciar eles no script principal. 
+Com todo o cenário configurado, pode-se começar a escrever os scripts para comandar os agentes. Existem dois tipos de Scripts, o principal, que tem os comandos de inicialização e de eventos, e os de comportamento, que descrevem sequências de ações que serão executadas uma logo ao término da outra. O script principal deve ser chamado de "Main.txt", já os scripts de comportamento podem ter nomes arbitrários. Os nomes dos scripts de comportamento vão ser utilizados para referenciar eles no script principal. 
 
-(mostrar foto dos scripts)
+![Exemplo Scripts](https://user-images.githubusercontent.com/48321393/118320677-f1ee7300-b4d2-11eb-8f63-964e0eac6e7b.png)
 
 ### Random
 
@@ -63,7 +66,7 @@ no script principal existem dois tipos de comandos, os atemporais (que devem ir 
 
 O Create eh um comando atemporal e ele serve para inicializar os agentes, informando quantos, qual perfil, qual modelo e onde. o comando mais básico eh "Create *Number* *Profile* in *Place*", assim ele vai criar *Number* agentes do perfil *Profile*, na regionBox chamada *Place*. neste comando o modelo fica implícito, mas ele pode ser definido também, usando "as" depois de informar o perfil, como por exemplo em "Create 2 Walker as Macarena in Random", assim serão criados dois agentes do perfil "Walker" com o modelo definido como "Macarena" em alguma regionBox qualquer. Quando os agentes são criados, eles recebem um "id" que vai ser utilizado para dar comandos para agentes isolados, então se tivermos, dois comandos "Create" como no exemplo abaixo.
 
-(mostrar foto Create 2 walker as macarena in Random Create 1 Agent in Random)
+![Create example](https://user-images.githubusercontent.com/48321393/118320790-177b7c80-b4d3-11eb-8bdf-88b53e8c1104.png)
 
 Os dois agentes do perfil "Walker" terão os id’s 1 e 2 e agente de perfil "Agent" vai ter  id 3, o id é definido por ordem de criação, assim ele vai incrementando conforme os agentes vão sendo criados, se eu tiver 8 agentes os id's vão ser de 1 a 8 conforme eles foram criados no código.
 
