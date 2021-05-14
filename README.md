@@ -1,4 +1,4 @@
-# Script-for-virtual-humans
+# Comportamento Scriptado de Humanos Virtuais para Testes de Hipóteses Antropológicas
 
 ## Dependências
   - [x] Unreal 4.26
