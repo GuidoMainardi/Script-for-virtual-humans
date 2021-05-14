@@ -2,7 +2,7 @@
 
 ## Dependências
   - [x] Unreal 4.26
-  - [x] Visual Studio (com suporte para unreal)
+  - [x] Visual Studio (com suporte para Unreal)
 
 
 ## Novo Projeto
