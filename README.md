@@ -1,89 +1,92 @@
 # Comportamento Scriptado de Humanos Virtuais para Testes de Hipóteses Antropológicas
 
-## Dependências
+## Dependencies
   - [x] Unreal 4.26
-  - [x] Visual Studio (com suporte para Unreal)
+  - [x] Visual Studio (with support for Unreal)
 
 
-## Novo Projeto
+## New Project
 
-Antes de começar a usar os scripts é necessário criar e mapear o ambiente que será usado no projeto, para este tutorial foi escolhida uma casa simples que vai ser modelada e usada para demonstrar os comandos existentes.
+Before starting to use the scripts it is necessary to create and map the environment that will be used in the project, for this tutorial it was chosen a simple house that will be modeled and used to demonstrate the existing commands.
 
-![Casa](https://user-images.githubusercontent.com/48321393/118320533-c5d2f200-b4d2-11eb-9c2d-42ba912bad04.jpg)
+![House](https://user-images.githubusercontent.com/48321393/118320533-c5d2f200-b4d2-11eb-9c2d-42ba912bad04.jpg)
 
 
-### Cenário inicial
+### Initial scenario
 
-O primeiro passo é criar o cenário e adicionar uma navmesh nele, para que ela nos ajude a encontrar os caminhos de um ponto ao outro.
+The first step is to create the scenario and add a navmesh to it, so that it helps us to find our path from one point to another.
 
 ![Cenario](https://user-images.githubusercontent.com/48321393/118320557-cd929680-b4d2-11eb-8f95-68a2b3723561.png)
 
-Depois de ter o cenário inicial, é preciso fazer um mapeamento dele usando as RegionBox. Cada RegionBox vai preencher um lugar no cenário e vai representar a área deste lugar. No caso da casa, temos a cozinha, a sala, o quarto e o banheiro, para cada um desses cômodos nós vamos criar uma RegionBox com o nome deste cômodo.
+Once you have the initial scenario, you need to map it using the RegionBox. Each RegionBox will fill a place on the stage and will represent the area of that place. In the house's case, we have the kitchen, the living room, the bedroom and the bathroom, for each of these rooms we will create a RegionBox with the room's name.
 
 ![ReginBoxes](https://user-images.githubusercontent.com/48321393/118320564-d1beb400-b4d2-11eb-9c9c-f1d9f4dab4cb.png)
 
-Com o lugar criado e mapeado existe uma última configuração que pode ou nao ser feita, em cada RegionBox existe um atributo chamado "flags", que pode ser adicionado novos valores nele, por padrão todas RegionBox são inicializadas como "Place", porém pode-se adicionar novas marcações, para que seja possível limitar os comandos referentes a lugares aleatórios (caso desejado).
+With the place created and mapped there is a last configuration that may or may not be done, in each RegionBox there is an attribute called "flags", which can be added new values in it, by default all RegionBox are initialized as "Place", but you can add new flags, so that it is possible to limit the commands referring to random places.
 
 ![Flags](https://user-images.githubusercontent.com/48321393/118320579-d6836800-b4d2-11eb-8c0e-77bf644e3bda.png)
 
-### Modelos
+### Models
 
-Para que seja possível utilizar novos modelos é preciso inserir eles no projeto primeiro e fazer uma pequena máquina de estados para definir as animações de parado, andando e correndo. Além disso, também é necessário criar as regiões de colisão deste modelo que vai ser utilizado.
+In order to be able to use new models it is necessary to insert them in the project first and make a small state machine to define the animations of standing, walking and running. In addition, it is also necessary to create the collision regions of this model that will be used.
 
 ![Maquina de estados](https://user-images.githubusercontent.com/48321393/118320597-db481c00-b4d2-11eb-82af-138a032ddcd6.png)
 
-Por último, precisa ser adicionado no código "Agent.cpp" o caminho de cada coisa criada pelo novo modelo e adicionar no map com o nome que você deseja utilizar quando for se referir a eles nos scripts. 
+It also needs to be added in the code "Agent.cpp" the path of each thing created by the new model and add to the map with the name you want to use when referring to them in the scripts.
 
 ![Modelo Referencia](https://user-images.githubusercontent.com/48321393/118320620-e438ed80-b4d2-11eb-9d26-875670bcbc2c.png)
 ![references AgentCpp](https://user-images.githubusercontent.com/48321393/118320643-e7cc7480-b4d2-11eb-9660-d0fbc12a2bec.png)
 
 
-### Animações
+### Animations
 
-Para adicionar animações o processo é parecido com os modelos da seção acima, precisa adicionar a animação no projeto e depois colocar o caminho dela no "Agent.cpp" salvando ele no map com o nome que vai ser usado no script. Uma coisa para se cuidar é que as animações são ligadas ao modelo, então cada modelo deve ter a sua animação e ter um nome diferente no map, como por exemplo as animações de "dance" e "macarenaDance", que são iguais, porem para modelos diferentes.
+To add animations the process is similar to the models in the section above, you need to add the animation to the project and then put its path in "Agent.cpp" saving it on the map with the name that will be used in the script. One thing to take care of is that the animations are linked to the model, so each model must have its own animation and have a different name on the map, for example the "dance" and "macarenaDance" animations, which are the same, however for different models.
 
 ![anim references Agentcpp](https://user-images.githubusercontent.com/48321393/118320664-ee5aec00-b4d2-11eb-9dc8-9303ec9e1e06.png)
 
-## Perfil
+## Profile
 
-Perfil é a principal forma de distinguir os agentes, quando eles são criados eles recebem um perfil e são chamados por ele. Por exemplo, quando eu crio um agente com o perfil "walker" ele vai responder a comandos que mandem todos os walkers seguir algum comportamento e vai acionar eventos previstos quando um walker se direcionar para alguma RegionBox. Agentes do mesmo perfil podem ter modelos diferentes e seguem as mesmas instruções quando elas são ordenadas ao grupo(perfil) por exemplo "All Walker...". O nome de cada perfil é decidido por quem estiver escrevendo os scripts e não pode utilizar as palavras reservadas da linguagem como nomes de perfis, por exemplo (All, go, create, default...)
+Profile is the main way to distinguish agents, when they are created they are given a profile and are called by it. For example, when I create an agent with the "walker" profile, it will respond to commands that tell all walkers to follow some behavior and will trigger predicted events when a walker goes to a RegionBox. Agents of the same profile can have different models and follow the same instructions when they are ordered to the group (profile) for example "All Walker ...". The name of each profile is decided by whoever is writing the scripts and cannot use the reserved words of the language as profile names, for example (All, go, create, default ...)
 
-## Comandos
+## Comands
 
-Com todo o cenário configurado, pode-se começar a escrever os scripts para comandar os agentes. Existem dois tipos de Scripts, o principal, que tem os comandos de inicialização e de eventos, e os de comportamento, que descrevem sequências de ações que serão executadas uma logo ao término da outra. O script principal deve ser chamado de "Main.txt", já os scripts de comportamento podem ter nomes arbitrários. Os nomes dos scripts de comportamento vão ser utilizados para referenciar eles no script principal. 
+With the whole scenario set up, you can start writing the scripts to command the agents. There are two types of Scripts, the main one, which has the initialization and event commands, and the behavioral ones, which describe sequences of actions that will be executed one after the other ends. The main script must be called "Main.txt", since the behavior scripts can have arbitrary names. The names of the behavior scripts will be used to reference them in the main script.
 
 ![Exemplo Scripts](https://user-images.githubusercontent.com/48321393/118320677-f1ee7300-b4d2-11eb-8f63-964e0eac6e7b.png)
 
 ### Random
 
-O random nao eh um comando, mas sim um jeito de se referir às regionBox, quando utilizado a palavra Random invés do nome da region box, o local alvo vai ser alguma regionBox aleatória qualquer, caso não seja desejado que todas regionBox sejam alvo deste comando, pode-se usar o Random junto com uma flag, por exemplo "Random South", assim ele vai utilizar alguma regionBox aleatórios, que tenha "South" como elemento no atributo "flags".
+Random is not a command, but rather a way of referring to regionBox, when using the word Random instead of the name of the region box, the target location will be some random regionBox, if it is not desired that all regionBox are the target of this command. You can use Random together with a flag, for example "Random South", so it will use some random regionBox, which has "South" as an element in the "flags" attribute. 
 
-### Script principal
+### Main Script
 
-no script principal existem dois tipos de comandos, os atemporais (que devem ir no começo do script) e os temporais (que devem vir após os atemporais e seguirem uma ordem cronológica, ou seja o comando de tempo 2, não pode vir antes de um comando de tempo 1). 
+in the main script there are two types of commands, timeless (which must go at the beginning of the script) and temporal (which must come after timeless and follow a chronological order, that is, time command 2, cannot come before a time command 1).
 
 #### Create
 
-O Create eh um comando atemporal e ele serve para inicializar os agentes, informando quantos, qual perfil, qual modelo e onde. o comando mais básico eh "Create *Number* *Profile* in *Place*", assim ele vai criar *Number* agentes do perfil *Profile*, na regionBox chamada *Place*. neste comando o modelo fica implícito, mas ele pode ser definido também, usando "as" depois de informar o perfil, como por exemplo em "Create 2 Walker as Macarena in Random", assim serão criados dois agentes do perfil "Walker" com o modelo definido como "Macarena" em alguma regionBox qualquer. Quando os agentes são criados, eles recebem um "id" que vai ser utilizado para dar comandos para agentes isolados, então se tivermos, dois comandos "Create" como no exemplo abaixo.
+The Create command is a timeless command and it is used to initialize the agents, informing how many, which profile, which model and where. the most basic command is "Create *Number* *Profile* in *Place*", so it will create * Number * agents from the profile *Profile*, in the regionBox called *Place*. in this command the model is implicit, but it can also be defined, using "as" after informing the profile, as for example in "Create 2 Walker as Macarena in Random", so two agents of the "Walker" profile will be created with the model defined as "Macarena" in any regionBox. When agents are created, they are given an "id" that will be used to give commands to isolated agents, so if we have, two "Create" commands as in the example below.
 
 ![Create example](https://user-images.githubusercontent.com/48321393/118320790-177b7c80-b4d3-11eb-8bdf-88b53e8c1104.png)
 
-Os dois agentes do perfil "Walker" terão os id’s 1 e 2 e agente de perfil "Agent" vai ter  id 3, o id é definido por ordem de criação, assim ele vai incrementando conforme os agentes vão sendo criados, se eu tiver 8 agentes os id's vão ser de 1 a 8 conforme eles foram criados no código.
+The two agents of the "Walker" profile will have the id's 1 and 2 and the profile agent "Agent" will have id 3, the id is defined in order of creation, so it will increase as the agents are created, if I have 8 agents the id's will be from 1 to 8 as they were created in the code.
 
 
 #### When
 
-O When eh o outro comando atemporal, ele vai definir eventos atemporais, quando um agente de um perfil específico, for pra um lugar específico ele vai acionar um comando, a estrutura dele fica "When *Profile* in *Place* *Command*", assim sempre que algum agente do perfil *Profile* começar a ir para o local *Place* o comando *Command* vai ser executado. O comando *Command* eh um comando do tipo temporal, que vai ser explicado abaixo, porém diferente dos comandos temporais utilizados no resto do script, este nao vai ter o "time *t*", pois vai ser acionado sempre que um agente de um determinado perfil for pra algum lugar e não quando um tempo de simulação for atingido.
+When is the other timeless command, it will define timeless events, when an agent of a specific profile goes to a specific place it will trigger a command, its structure is "When *Profile* in *Place* *Command*" , so whenever any agent of the *Profile* profile starts to go to the *Place* location, the *Command* command will be executed. The command *Command* is a time-type command, which will be explained below, but different from the time commands used in the rest of the script, this one will not have the "time *t*", as it will be triggered whenever an agent a certain profile goes somewhere and not when a simulation time is reached.
 
 #### *Profile* *ID*
 
-Este comando é um comando do tipo temporal e define um agente único para executar um determinado comportamento. Este comando tem a estrutura "*Profile* *ID* time *t* run *Behaviour*", assim no tempo *t* o agente de id *ID* vai executar o comportamento *Behaviour*. o comportamento vai ser descrito num script de comportamento que será explicado nas seções abaixo. este comando tem algumas variações, como por exemplo "All *Profile* time *t* run *Behaviour*", assim todos agentes que forem do perfil *Profile* vão executar o script *Behaviour*. Outra variação possível é o uso de loop no lugar de run, onde invés de rodar uma única vez o comportamento, eles ficam repetindo as ações infinitamente. Estes comandos se sobrepõem às ações que estavam sendo executadas anteriormente, ou seja, se um agente estava executando um comportamento e chega um comando para ele executar um outro comportamento, ele para a execução antiga e começa a executar a nova.
+This command is a temporal command and defines a single agent to perform a certain behavior. This command has the structure "*Profile* *ID* time *t* run *Behavior*", so in time *t* (after *t* seconds of simulation) the agent of id *ID* will execute the behavior *Behavior*. the behavior will be described in a behavior script that will be explained in the sections below. this command has some variations, for example "All *Profile* time *t* run *Behavior*", so all agents that are in the *Profile* profile will execute the *Behavior*  script. Another possible variation is the use of a loop instead of a run, where instead of running the behavior only once, they keep repeating the actions infinitely. These commands overlap with the actions that were being executed previously, that is, if an agent was executing a behavior and a command arrives for him to execute another behavior, he stops the old execution and starts executing the new one.
 
 ### Behaviour Commands
-Os comandos de comportamento são os mais simples e tem instruções diretas, são chamados dentro de um Script de comportamento, eles são executados um logo apos a finalização do outro, quando estão dentro do mesmo script e podem ser interrompidos por novos comandos dados através do script principal.
+
+The behavior commands are the simplest and have direct instructions, they are called within a behavior script, they are executed one after the other ends, when they are inside the same script, and can be interrupted by new commands given through the script main.
 
 #### Go to
-O comando go to ordena que o agente vá para algum lugar, e eh utilizado junto com as RegionBoxes a estrutura dele eh bem simples: "go to *Place*", assim o agente que estiver rodando este comando vai começar a ir para um ponto aleatório dentro da regionbox *Place*. A regionBox deste comando também pode ser descrita como "Random" junto com as flags definidas pelo programador, por exemplo "Random South".
+
+The go to command orders the agent to go somewhere, and it is used together with the RegionBoxes, its structure is very simple: "go to *Place*", so the agent running this command will start to go to a random point within the *Place* regionbox. The regionBox of this command can also be described as "Random" along with the flags defined by the programmer, for example "Random South".
 
 #### play
-O comando play serve para iniciar um animação, durante o tempo da animação o agente fica parado executando ela. o comando tem a estrutura "play *anim*" onde *anim* eh a chave adicionada no map em "Agent.cpp", vale ressaltar que as animações são ligadas ao modelo, então caso seja ordenado que um modelo rode uma animação que nao eh dele, ele vai ficar parado em posição neutra pelo tempo da animação, antes de seguir executando os próximos comandos.
+
+The play command is used to start an animation, during the animation time the agent is stopped executing it. the command has the structure "play *anim*" where *anim* is the key added to the map in "Agent.cpp", it is worth mentioning that the animations are linked to the model, so if a model is ordered to run an animation that does not it belongs to him, it will be stopped in neutral position for the duration of the animation, before continuing to execute the next commands.
