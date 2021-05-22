@@ -87,6 +87,6 @@ The behavior commands are the simplest and have direct instructions wich are cal
 
 The go to command orders the agent to go somewhere. It is used together with the RegionBox. The structure is very simple: "go to *Place*" and than the agent running this command will start to go to a random point within the *Place* RegionBox. The regionBox of this command can also be described as "Random" along with the flags defined by the programmer, for example "Random South".
 
-#### play
+#### Play
 
 The play command is used to start an animation. The agent stop where it is before start the animation. The command has the structure "play *anim*" where *anim* is the key added to the map in "Agent.cpp". It is worth mentioning that the animations are linked to the model. So if a model is ordered to run an animation that does not it belongs to him, it will be stopped in neutral position for the duration of the animation before continuing to execute the next commands.
