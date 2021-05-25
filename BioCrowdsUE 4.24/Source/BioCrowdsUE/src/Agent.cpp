@@ -5,27 +5,51 @@
 #include "Components/CapsuleComponent.h"
 
 void AAgent::MyModels(){
-    ConstructorHelpers::FObjectFinder<USkeletalMesh>MacerenaMeshRef(TEXT("SkeletalMesh'/Game/Mannequin/Character/Mesh/Macarena_Dance.Macarena_Dance'"));
-    Models.Add(TEXT("Macarena"), MacerenaMeshRef.Object);
+
+    // defult model
     ConstructorHelpers::FObjectFinder<USkeletalMesh>DefaultMeshRef(TEXT("SkeletalMesh'/Game/Mannequin/Character/Mesh/SK_Mannequin.SK_Mannequin'"));
     Models.Add(TEXT("Default"), DefaultMeshRef.Object);
+
+    // macarena model                                                      // macarena model reference
+    ConstructorHelpers::FObjectFinder<USkeletalMesh>MacerenaMeshRef(TEXT("SkeletalMesh'/Game/Mannequin/Character/Mesh/Macarena_Dance.Macarena_Dance'"));
+              // model name in script
+    //                  \/
+    Models.Add(TEXT("Macarena"), MacerenaMeshRef.Object);
 }
 void AAgent::MyPhysics() {
-    ConstructorHelpers::FObjectFinder<UPhysicsAsset>MacarenaPhysRef(TEXT("PhysicsAsset'/Game/Mannequin/Character/Mesh/Macarena_Dance_PhysicsAsset.Macarena_Dance_PhysicsAsset'"));
-    Physics.Add(TEXT("Macarena"), MacarenaPhysRef.Object);
+
+    //default physics
     ConstructorHelpers::FObjectFinder<UPhysicsAsset>DefaultPhysRef(TEXT("PhysicsAsset'/Game/Mannequin/Character/Mesh/SK_Mannequin_PhysicsAsset.SK_Mannequin_PhysicsAsset'"));
     Physics.Add(TEXT("Default"), DefaultPhysRef.Object);
+
+    // macarena physics                                                      // macarena physics reference
+    ConstructorHelpers::FObjectFinder<UPhysicsAsset>MacarenaPhysRef(TEXT("PhysicsAsset'/Game/Mannequin/Character/Mesh/Macarena_Dance_PhysicsAsset.Macarena_Dance_PhysicsAsset'"));
+              // model name in script
+    //                  \/
+    Physics.Add(TEXT("Macarena"), MacarenaPhysRef.Object);
 }
 void AAgent::MyDefaultAnimations() {
-    ConstructorHelpers::FObjectFinder<UAnimBlueprint>MacarenaDefaultAnimRef(TEXT("AnimBlueprint'/Game/Mannequin/Animations/ThirdPerson_AnimBP_Macarena.ThirdPerson_AnimBP_Macarena'"));
-    DefaultAnims.Add(TEXT("Macarena"), MacarenaDefaultAnimRef.Object);
+    // default blueprint default anim
     ConstructorHelpers::FObjectFinder<UAnimBlueprint>DefaultAnimRef(TEXT("AnimBlueprint'/Game/Mannequin/Animations/ThirdPerson_AnimBP.ThirdPerson_AnimBP'"));
     DefaultAnims.Add(TEXT("Default"), DefaultAnimRef.Object);
+
+    // macarena blueprint default anim                                                   // macarena blueprint anim reference
+    ConstructorHelpers::FObjectFinder<UAnimBlueprint>MacarenaDefaultAnimRef(TEXT("AnimBlueprint'/Game/Mannequin/Animations/ThirdPerson_AnimBP_Macarena.ThirdPerson_AnimBP_Macarena'"));
+                  // model name in script
+    //                       \/
+    DefaultAnims.Add(TEXT("Macarena"), MacarenaDefaultAnimRef.Object);
 }
 void AAgent::MyAnim() {
+    // Dance animations Default Model                                             // Dance animaion reference
     ConstructorHelpers::FObjectFinder<UAnimSequence>DefaultMeshDanceAnim(TEXT("AnimSequence'/Game/Mannequin/Animations/Dance.Dance'"));
+                // anim name in script
+    //                    \/
     Animations.Add(TEXT("Dance"), DefaultMeshDanceAnim.Object);
+
+    // Dance animation macarena Model                                                     // Macarena animation reference
     ConstructorHelpers::FObjectFinder<UAnimSequence>MacarenaMeshDanceAnim(TEXT("AnimSequence'/Game/Mannequin/Animations/Macarena_Dance_Anim.Macarena_Dance_Anim'"));
+                     // anim name in script
+    //                        \/
     Animations.Add(TEXT("MacarenaDance"), MacarenaMeshDanceAnim.Object);
 }
 // Can't use constructors when calling spawn actor

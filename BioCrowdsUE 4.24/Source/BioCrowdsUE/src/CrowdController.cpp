@@ -278,7 +278,6 @@ void ACrowdController::BeginPlay() {
     //find all regions and store
     TArray<AActor*> regions;
     UGameplayStatics::GetAllActorsOfClass(GetWorld(), ARegionBox::StaticClass(), regions);
-   // UE_LOG(LogTemp, Warning, TEXT("%d"), regions.Num());
     FString RegionName;
     for (int i = 0; i < regions.Num(); i++) {
         ARegionBox* r = Cast<ARegionBox>(regions[i]);
@@ -289,6 +288,8 @@ void ACrowdController::BeginPlay() {
         RegionName = regions[i]->GetName();
         Locais.Add(RegionName, i);
     }
+
+
     int actualNumAgents = 0;
     //random goal setup
     if (regsVacant.Num() != 0) {
@@ -299,17 +300,11 @@ void ACrowdController::BeginPlay() {
                 line++;
             }
             LocalNumberOfAgents++;
-            //int idx = FMath::RandRange(0, regsVacant.Num() - 1);
-            //UE_LOG(LogTemp, Warning, TEXT("Quadrante inicial: %d"), Locais[scene.text[line].getRegionName().c_str()]);
             int idx = get_LocationIndex(scene.text[line].getRegionName().c_str());
             ARegionBox* addinbox = regsVacant[idx];
             addinbox->ProfilesInThisPlace.Add(scene.text[line].getProfile().c_str());
-            //UE_LOG(LogTemp, Warning, TEXT("Quadrante inicial: %s"), *regsVacant[idx]->GetName());
             FBox quad = regsVacant[idx]->box;
             regsVacant[idx]->numAgents++;
-            //GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("NUM AGENTS = %i"), regsVacant[idx]->numAgents));
-
-            //FBox quad = regs[0]->box;
 
             FNavLocation loc;
             FVector center = quad.GetCenter();
@@ -333,13 +328,6 @@ void ACrowdController::BeginPlay() {
                 agent->text = Text;
 
                 agent->reg = regsVacant[idx];
-
-                //if around percentage, remove
-                //if (regsVacant[idx]->numAgents >= regsVacant[idx]->percent * numAgents) {
-                    //regsFull.Add(regsVacant[idx]);
-                    //regsVacant.RemoveAt(idx);
-                //}
-
                 agents.Add(agent);
                 actualNumAgents++;
             }
@@ -348,9 +336,6 @@ void ACrowdController::BeginPlay() {
         //POTENTIALLY CHECK IF CHOOSING SAME REGION AS IN?
 
         for (int i = 0; i < actualNumAgents; i++) {
-            //FBox q = regs[0]->box;
-            //regs[0]->numAgents += 1;
-
             AAgent* agent = agents[i];
             FBox q;
 
@@ -381,12 +366,6 @@ void ACrowdController::BeginPlay() {
                 r->numAgents++;
                 agent->reg->numAgents--;
 
-                //if around percentage, remove from vacant
-                //if (r->numAgents >= r->percent * numAgents) {
-                  //  regsFull.Add(regsVacant[idx]);
-                   // regsVacant.RemoveAt(idx);
-                //}
-
                 if (regsFull.Contains(agent->reg)) {
                     regsVacant.Add(agent->reg);
                     regsFull.Remove(agent->reg);
@@ -406,7 +385,6 @@ void ACrowdController::BeginPlay() {
             float d2 = FVector::Distance(q.GetCenter(), FVector(q.Min.X, q.GetCenter().Y, q.GetCenter().Z));
             navMesh->GetRandomPointInNavigableRadius(q.GetCenter(), FMath::Min(d1, d2), g);
 
-            //FNavLocation g = navMesh->GetRandomPoint();
             // set Goal
             agent->init(FVector(agent->GetActorLocation().X, agent->GetActorLocation().Y, agent->GetActorLocation().Z + 90), agentV, agentR, duration, WidgetBPRef);
             agent->currTarget = agent->GetActorLocation();
@@ -423,115 +401,6 @@ void ACrowdController::BeginPlay() {
             agent->path.RemoveAt(0);
         }
     }
-
-    //find all leaders
-    TArray<AActor*> leads;
-    UGameplayStatics::GetAllActorsOfClass(GetWorld(), ALeader::StaticClass(), leads);
-    for (int i = 0; i < leads.Num(); i++) {
-        ALeader* l = Cast<ALeader>(leads[i]);
-        FVector leaderloc = l->GetActorLocation();
-
-        //DISPLAY TEXT ABOVE HEAD
-        ATextRenderActor* Text = GetWorld()->SpawnActor<ATextRenderActor>(ATextRenderActor::StaticClass(), FVector(leaderloc.X, leaderloc.Y, leaderloc.Z + 200), FRotator(0.f));
-        Text->GetTextRender()->SetText(FText::FromString(TEXT("Leader")));
-        Text->GetTextRender()->SetTextRenderColor(FColor::Red);
-        l->text = Text;
-
-        //INITIALIZE GOAL
-        //FNavLocation g = navMesh->GetRandomPoint();
-        FNavLocation g;
-        int idx = FMath::RandRange(0, l->points.Num() - 1);
-        FVector goal = l->points[idx];
-        navMesh->GetRandomPointInNavigableRadius(goal, 10, g);
-
-        l->init(FVector(l->GetActorLocation().X, l->GetActorLocation().Y, l->GetActorLocation().Z + 90), agentV, agentR, duration, WidgetBPRef);
-        l->currTarget = l->GetActorLocation();
-        l->SpawnDefaultController();
-
-        l->finalGoal = l->GetActorLocation();
-
-        //find path to goal
-        UNavigationPath* p = navSys->FindPathToLocationSynchronously(GetWorld(), l->GetActorLocation(), l->goal, NULL);
-        TArray <FVector> path = p->PathPoints;
-        l->path = path;
-        l->goal = path[0];
-        l->goal.Z += 90;
-        l->path.RemoveAt(0);
-
-        if (l->formation == EForm::EF_RANDLINE) {
-            TArray<AFollower*> follows = CreateFollowers(Cast<AAgent>(l), l->GetActorLocation(), 2, navMesh, g, l->numFollowers);
-            for (AFollower* created : follows) {
-                l->followers.Add(created);
-            }
-        } else {
-            AAgent* currLead = Cast<AAgent>(l);
-            int numCreated = 0;
-            //int noMore = 0;
-            //while (numCreated < l->numFollowers && noMore < 3) {
-            for (int j = 0; j < l->numFollowers; j++) {
-                FNavLocation followloc;
-                if (l->formation == EForm::EF_CLUMP || l->formation == EForm::EF_CLUMPLINE) {
-                    FVector hm = FVector(leaderloc.X - 300, leaderloc.Y - 300, leaderloc.Z);
-                    navMesh->GetRandomPointInNavigableRadius(hm, 500, followloc);
-                } else if (l->formation == EForm::EF_LINE) {
-                    FVector behind = FVector(leaderloc.X - (numCreated+1) * 20, leaderloc.Y - (numCreated+1) * 20, leaderloc.Z);
-                    navMesh->GetRandomPointInNavigableRadius(behind, 10, followloc);
-                } else if (l->formation == EForm::EF_WIDELINE) {
-                    float offsetBack = -100 * (numCreated % 3);
-                    float offsetRight;
-                    if (i % 2 == 0) {
-                        offsetRight = -100 * ((numCreated % 10) + 1);
-                    } else {
-                        offsetRight = 100 * ((numCreated % 10) + 1);
-                    }
-
-                    FVector behind = currLead->GetActorLocation() + (currLead->GetActorForwardVector() * offsetBack) + (currLead->GetActorRightVector() * offsetRight);
-
-                    navMesh->GetRandomPointInNavigableRadius(behind, 20, followloc);
-                }
-
-                if (!followloc.HasNodeRef()) {
-                    continue;
-                }
-
-                AFollower* agent = GetWorld()->SpawnActor<AFollower>(FVector(followloc.Location.X, followloc.Location.Y, followloc.Location.Z), FRotator::ZeroRotator);
-
-                if (agent != nullptr) {
-                    numCreated++;
-                    //noMore = 0;
-                    //DISPLAY TEXT ABOVE HEAD
-                    ATextRenderActor* atxt = GetWorld()->SpawnActor<ATextRenderActor>(ATextRenderActor::StaticClass(), FVector(followloc.Location.X, followloc.Location.Y, followloc.Location.Z + 200), FRotator(0.f));
-                    atxt->GetTextRender()->SetText(FText::FromString(TEXT("Follower")));
-                    atxt->GetTextRender()->SetTextRenderColor(FColor::Red);
-                    agent->text = atxt;
-
-                    agent->init(FVector(g.Location.X, g.Location.Y, g.Location.Z + 90), agentV, agentR, duration, WidgetBPRef);
-                    agent->currTarget = agent->GetActorLocation();
-                    agent->SpawnDefaultController();
-
-                    l->followers.Add(agent);
-                    agent->parent = currLead;
-                } else {
-                    //noMore++;
-                }
-
-                //if agent wasn't created don't update new leader
-                if (l->formation == EForm::EF_WIDELINE) {
-                    if (numCreated % 10 == 0 && numCreated != 0) {
-                        if (agent != nullptr) {
-                            currLead = Cast<AAgent>(agent);
-                        }
-                    }
-                }
-            }
-        }
-        leaders.Add(l);
-    }
-
-    //uncomment to see markers as spheres
-    /*for(unsigned int i = 0; i < sampler.samples.Num(); i++) {
-     AMarkerVis* NewActor = GetWorld()->SpawnActor<AMarkerVis>(sampler.samples[i], FRotator::ZeroRotator);
-     }*/
 
     // load profiles
     
@@ -837,62 +706,28 @@ void ACrowdController::Tick(float DeltaTime) {
         Run_AgentBehaviour(agent, DeltaTime);
     }
     // ============================================  Script code ends here =========================================================
-    
+   
     //Update goals
     //gather agents done moving
     TArray<AAgent*> afinished;
-    TArray<ALeader*> lfinished;
     TArray<AAgent*> finished;
     for (AAgent* a : agents) {
+        /*
         if (a->showGoal) {
             DrawDebugDirectionalArrow(GetWorld(), FVector(a->GetActorLocation().X, a->GetActorLocation().Y, a->GetActorLocation().Z + 30),
                                       FVector(a->finalGoal.X, a->finalGoal.Y, a->finalGoal.Z + 30),
                                       200, FColor::Red, false);
-        }
+        }*/
 
         a->text->SetActorLocation(FVector(a->GetActorLocation().X, a->GetActorLocation().Y, a->GetActorLocation().Z + 200));
         FVector vel = a->GetVelocity();
         float dist = FVector::Distance(a->GetActorLocation(), a->currTarget);
-        if (dist < 5 || (FMath::Abs(vel.X) == 0 && FMath::Abs(vel.Y) == 0) /*|| minDist < 60*/) {
+        if (dist < 5 || (FMath::Abs(vel.X) == 0 && FMath::Abs(vel.Y) == 0)) {
             afinished.Add(a);
             finished.Add(a);
-            /*for(unsigned int i = 0; i < a->markers.Num(); i++) {
-             AMarkerVis* newM = GetWorld()->SpawnActor<AMarkerVis>(a->markers[i]->pos, FRotator::ZeroRotator);
-             }*/
         }
     }
 
-    //gather families done moving
-    for (ALeader* l : leaders) {
-        //debug tools
-        if (l->showGoal) {
-            DrawDebugDirectionalArrow(GetWorld(), FVector(l->GetActorLocation().X, l->GetActorLocation().Y, l->GetActorLocation().Z + 30),
-                                      FVector(l->finalGoal.X, l->finalGoal.Y, l->finalGoal.Z + 30),
-                                      200, FColor::Red, false, -1, 0, 5.f);
-        }
-        for (int i = 0; i < l->markers.Num(); i++) {
-            //DrawDebugSphere(GetWorld(), l->markers[i]->pos, 10, 26, FColor::Red, false);
-            //DrawDebugPoint(GetWorld(), l->markers[i]->pos, 10, FColor::Red, false);
-        }
-
-        l->text->SetActorLocation(FVector(l->GetActorLocation().X, l->GetActorLocation().Y, l->GetActorLocation().Z + 200));
-        FVector vel = l->GetVelocity();
-        float dist = FVector::Distance(l->GetActorLocation(), l->currTarget);
-        if (dist < 20 || (FMath::Abs(vel.X) == 0 && FMath::Abs(vel.Y) == 0) /*|| minDist < 60*/) {
-            //finished.Add(Cast<AAgent>(l));
-            //lfinished.Add(l);
-        }
-        for (AFollower* f : l->followers) {
-            f->text->SetActorLocation(FVector(f->GetActorLocation().X, f->GetActorLocation().Y, f->GetActorLocation().Z + 200));
-            //finished.Add(Cast<AAgent>(f));
-            /*f->text->SetActorLocation(FVector(f->GetActorLocation().X, f->GetActorLocation().Y, f->GetActorLocation().Z + 200));
-             FVector velf = f->GetVelocity();
-             float distf = FVector::Distance(f->GetActorLocation(), f->currTarget);
-             if (distf < 5 || (FMath::Abs(velf.X) == 0 && FMath::Abs(velf.Y) == 0)) {
-             finished.Add(Cast<AAgent>(f));
-             }*/
-        }
-    }
 
     reassignMarkers(finished);
     update(finished);
@@ -928,11 +763,6 @@ void ACrowdController::Tick(float DeltaTime) {
                         r->numAgents++;
                         a->reg->numAgents--;
 
-                        //if agent's last reg was full
-                       // if (regsFull.Contains(a->reg)) {
-                        //    regsVacant.Add(a->reg);
-                        //    regsFull.Remove(a->reg);
-                       // }
 
                         a->reg = r;
                     } else {
@@ -944,145 +774,16 @@ void ACrowdController::Tick(float DeltaTime) {
                         r->numAgents++;
                         a->reg->numAgents--;
 
-                        //if around percentage, remove from vacant
-                        //if (r->numAgents >= r->percent * numAgents) {
-                        //    regsFull.Add(regsVacant[idx]);
-                         //   regsVacant.RemoveAt(idx);
-                       // }
-
                         if (regsFull.Contains(a->reg)) {
                             regsVacant.Add(a->reg);
                             regsFull.Remove(a->reg);
                         }
                         a->reg = r;
                     }
-
-                    //get activity
-                    int32 num = a->reg->activities.Num();
-                    int32 rand = FMath::RandRange(0, num - 1);
-                    FString acty = a->reg->activities[rand];
-
-                    a->activity = acty;
-
-                    FNavLocation g;
-                    float d1 = FVector::Distance(q.GetCenter(), FVector(q.GetCenter().X, q.Max.Y, q.GetCenter().Z));
-                    float d2 = FVector::Distance(q.GetCenter(), FVector(q.Min.X, q.GetCenter().Y, q.GetCenter().Z));
-                    navMesh->GetRandomPointInNavigableRadius(q.GetCenter(), FMath::Min(d1, d2), g);
-
-                    a->goal = a->GetActorLocation();
-                    a->goal.Z += 90;
-
-                    a->finalGoal = a->goal;
-
-                    UNavigationPath* p = navSys->FindPathToLocationSynchronously(GetWorld(), a->GetActorLocation(), a->goal, NULL);
-                    TArray <FVector> path = p->PathPoints;
-                    a->path = path;
-                    a->goal = path[0];
-                    a->goal.Z += 90;
-                    a->path.RemoveAt(0);
-
-
-                    a->text->GetTextRender()->SetText(FText::FromString(TEXT("Walking")));
-                    a->text->GetTextRender()->SetTextRenderColor(FColor::Red);
-                    a->ticks = 0;
-
                 } else {
                     a->ticks++;
                 }
             }
         }
     }
-
-    for (ALeader* l : lfinished) {
-        FVector leaderloc = l->GetActorLocation();
-        /*DrawDebugDirectionalArrow(GetWorld(), leaderloc,
-                                  leaderloc + (100 * l->GetActorForwardVector()),
-                                  200, FColor::Blue, false);
-        DrawDebugDirectionalArrow(GetWorld(),leaderloc,
-                                  leaderloc + (100 * l->GetActorRightVector()),
-                                  200, FColor::Blue, false);*/
-
-        float dist = FVector::Distance(l->GetActorLocation(), l->goal);
-        if (dist > 100) {
-            AAIController* ac = Cast<AAIController>(l->GetInstigatorController());
-
-            FVector m = l->currTarget;
-
-            ac->MoveToLocation(l->currTarget, -1, false);
-        } else {
-            if (l->path.Num() > 0) {
-                l->goal = l->path[0];
-                l->goal.Z += 90;
-                l->path.RemoveAt(0);
-            } else {
-                //FNavLocation g = navMesh->GetRandomPoint();
-
-                //get goal specified
-                FNavLocation g;
-                int idx = FMath::RandRange(0, l->points.Num() - 1);
-                FVector goal = l->points[idx];
-                navMesh->GetRandomPointInNavigableRadius(goal, 10, g);
-
-                l->goal = l->GetActorLocation();
-                l->goal.Z += 90;
-
-                l->finalGoal = l->goal;
-
-                UNavigationPath* p = navSys->FindPathToLocationSynchronously(GetWorld(), l->GetActorLocation(), l->goal, NULL);
-                TArray <FVector> path = p->PathPoints;
-                l->path = path;
-                l->goal = path[0];
-                l->goal.Z += 90;
-                l->path.RemoveAt(0);
-            }
-        }
-
-        //update followers
-        //for line formation
-        AFollower* prev = nullptr;
-        for (AFollower* f: l->followers) {
-            FVector target;
-
-            if(l->formation == EForm::EF_CLUMP) {
-                FNavLocation jittered;
-                navMesh->GetRandomPointInNavigableRadius(l->GetActorLocation(), 50, jittered);
-
-                target = jittered.Location;
-                target.Z += 90;
-            } else if (l->formation == EForm::EF_CLUMPLINE) {
-                target = l->GetActorLocation();
-            } else if (l->formation == EForm::EF_LINE) {
-                if (prev == nullptr) {
-                    target = l->GetActorLocation();
-                } else {
-                    target = prev->GetActorLocation();
-                }
-                prev = f;
-            } else if (l->formation == EForm::EF_RANDLINE) {
-                AAgent* parent = f->parent;
-                target = parent->GetActorLocation() /*+(parent->GetActorForwardVector() * f->offsetBack)*/ + (parent->GetActorRightVector() * (f->offsetRight / 2));
-            } else if (l->formation == EForm::EF_WIDELINE) {
-                AAgent* parent = f->parent;
-                target = parent->GetActorLocation();
-            }
-
-            if (f->showGoal) {
-                DrawDebugDirectionalArrow(GetWorld(), FVector(f->GetActorLocation().X, f->GetActorLocation().Y, f->GetActorLocation().Z + 30),
-                                          FVector(target.X, target.Y, target.Z + 30),
-                                          200, FColor::Red, false, -1, 0, 5.f);
-            }
-
-            AAIController* ac = Cast<AAIController>(f->GetInstigatorController());
-
-            ac->MoveToLocation(target, -1, false);
-        }
-    }
 }
-
-/*void ACrowdController::OnSelected(AActor* TouchedActor, FKey ButtonPressed) {
- GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Cyan, FString("EEEEEEEEEEEEEEEEE"));
- //showGoal = !showGoal;
- //showMarkers = !showMarkers;
- //UUserWidget* WidgetInstance = CreateWidget<UUserWidget>(GetWorld(), WidgetBPReference);
- //WidgetInstance->AddToViewport();
- }*/

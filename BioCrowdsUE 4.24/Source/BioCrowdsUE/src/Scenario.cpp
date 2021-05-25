@@ -2,7 +2,7 @@
 
 Scenario::Scenario()
 {
-    fName = "Script.txt";
+    fName = "Main.txt";
     //pc = 0;
     //to_String = "";
 
