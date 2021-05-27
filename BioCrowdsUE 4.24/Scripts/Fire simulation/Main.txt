@@ -1,5 +1,5 @@
-Create 1 Guard as Highlight in Halway2
-Create 1 Guard as Highlight in Halway6
+Create 1 Guard as Highlight in Hallway2
+Create 1 Guard as Highlight in Hallway6
 Create 10 Buyer as Macarena in Random Store
 Create 50 Walker in Random Public
 When Guard in MallOffice All Guard loop Fire

@@ -1,2 +1,2 @@
-go to Halway8
-go to Halway6
+go to Hallway8
+go to Hallway6
