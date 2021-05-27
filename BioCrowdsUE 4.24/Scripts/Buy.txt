@@ -1,1 +1,2 @@
-go to Random
+go to AlecrimCroche
+play MacarenaThinking
