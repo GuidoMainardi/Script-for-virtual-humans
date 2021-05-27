@@ -190,7 +190,7 @@ void ACrowdController::update(TArray<AAgent*> finished) {
          }*/
 
         //update pos
-        i->GetCharacterMovement()->MaxWalkSpeed =  100; //v.Size();
+        i->GetCharacterMovement()->MaxWalkSpeed =  200; //v.Size();
         i->currTarget = i->GetActorLocation() + v;
     }
 }

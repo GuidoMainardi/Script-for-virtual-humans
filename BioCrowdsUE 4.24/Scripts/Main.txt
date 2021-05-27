@@ -1,3 +1,2 @@
-Create 200 Walker in Random Hall
-When Walker in Halway9 All Walker loop Fire
-All Walker time 0 loop Walk
+Create 1 Buyer as Macarena in Halway4
+Buyer 1 time 0 loop Buy

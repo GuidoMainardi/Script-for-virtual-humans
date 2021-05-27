@@ -51,6 +51,16 @@ void AAgent::MyAnim() {
                      // anim name in script
     //                        \/
     Animations.Add(TEXT("MacarenaDance"), MacarenaMeshDanceAnim.Object);
+
+    ConstructorHelpers::FObjectFinder<UAnimSequence>MacarenaMeshSittingAnim(TEXT("AnimSequence'/Game/Mannequin/Animations/Sitting_Rubbing_Arm.Sitting_Rubbing_Arm'"));
+    // anim name in script
+//                        \/
+    Animations.Add(TEXT("MacarenaSitting"), MacarenaMeshSittingAnim.Object);
+
+    ConstructorHelpers::FObjectFinder<UAnimSequence>MacarenaMeshThinkingAnim(TEXT("AnimSequence'/Game/Mannequin/Animations/Thinking.Thinking'"));
+    // anim name in script
+//                        \/
+    Animations.Add(TEXT("MacarenaThinking"), MacarenaMeshThinkingAnim.Object);
 }
 // Can't use constructors when calling spawn actor
 AAgent::AAgent()
