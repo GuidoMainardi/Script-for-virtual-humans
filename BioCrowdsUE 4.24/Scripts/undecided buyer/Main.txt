@@ -1,0 +1,2 @@
+Create 1 Buyer as Macarena in Halway7
+Buyer 1 time 0 loop Buy

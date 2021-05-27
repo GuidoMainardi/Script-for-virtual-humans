@@ -15,6 +15,12 @@ void AAgent::MyModels(){
               // model name in script
     //                  \/
     Models.Add(TEXT("Macarena"), MacerenaMeshRef.Object);
+
+    // macarena model                                                      // macarena model reference
+    ConstructorHelpers::FObjectFinder<USkeletalMesh>HighlightedMeshRef(TEXT("SkeletalMesh'/Game/Mannequin/Character/Mesh/Highlighted_guy.Highlighted_guy'"));
+    // model name in script
+//                  \/
+    Models.Add(TEXT("Highlight"), HighlightedMeshRef.Object);
 }
 void AAgent::MyPhysics() {
 
@@ -27,6 +33,7 @@ void AAgent::MyPhysics() {
               // model name in script
     //                  \/
     Physics.Add(TEXT("Macarena"), MacarenaPhysRef.Object);
+    Physics.Add(TEXT("Highlight"), MacarenaPhysRef.Object);
 }
 void AAgent::MyDefaultAnimations() {
     // default blueprint default anim
@@ -38,6 +45,7 @@ void AAgent::MyDefaultAnimations() {
                   // model name in script
     //                       \/
     DefaultAnims.Add(TEXT("Macarena"), MacarenaDefaultAnimRef.Object);
+    DefaultAnims.Add(TEXT("Highlight"), MacarenaDefaultAnimRef.Object);
 }
 void AAgent::MyAnim() {
     // Dance animations Default Model                                             // Dance animaion reference

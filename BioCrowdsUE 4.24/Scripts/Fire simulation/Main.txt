@@ -1,0 +1,12 @@
+Create 1 Guard as Macarena in Halway2
+Create 1 Guard as Macarena in Halway6
+Create 10 Buyer as Macarena in Random Store
+Create 50 Walker in Random Public
+When Guard in MallOffice All Guard loop Fire
+When Guard in MallOffice All Buyer loop Fire
+When Guard in MallOffice All Walker loop Fire
+Guard 1 time 0 loop Guard1
+Guard 2 time 0 loop Guard2
+All Buyer time 0 loop Buy
+All Walker time 0 loop Walk
+Guard 1 time 60 run Alarm
