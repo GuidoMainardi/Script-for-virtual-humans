@@ -322,10 +322,10 @@ void ACrowdController::BeginPlay() {
 
             if (agent != nullptr) {
                 //DISPLAY TEXT ABOVE HEAD
-                ATextRenderActor* Text = GetWorld()->SpawnActor<ATextRenderActor>(ATextRenderActor::StaticClass(), FVector(loc.Location.X, loc.Location.Y, loc.Location.Z + 200), FRotator(0.f));
-                Text->GetTextRender()->SetText(FText::FromString(TEXT("Walking")));
-                Text->GetTextRender()->SetTextRenderColor(FColor::Red);
-                agent->text = Text;
+                //ATextRenderActor* Text = GetWorld()->SpawnActor<ATextRenderActor>(ATextRenderActor::StaticClass(), FVector(loc.Location.X, loc.Location.Y, loc.Location.Z + 200), FRotator(0.f));
+                //Text->GetTextRender()->SetText(FText::FromString(TEXT("Walking")));
+                //Text->GetTextRender()->SetTextRenderColor(FColor::Red);
+                //agent->text = Text;
 
                 agent->reg = regsVacant[idx];
                 agents.Add(agent);
@@ -374,11 +374,11 @@ void ACrowdController::BeginPlay() {
             }
 
             //get activity
-            int32 num = agent->reg->activities.Num();
-            int32 rand = FMath::RandRange(0, num - 1);
-            FString acty = agent->reg->activities[rand];
+            //int32 num = agent->reg->activities.Num();
+            //int32 rand = FMath::RandRange(0, num - 1);
+            //FString acty = "Test";// agent->reg->activities[rand];
 
-            agent->activity = acty;
+            //agent->activity = acty;
 
             FNavLocation g; // Agent Goal
             float d1 = FVector::Distance(q.GetCenter(), FVector(q.GetCenter().X, q.Max.Y, q.GetCenter().Z));
@@ -409,14 +409,17 @@ void ACrowdController::BeginPlay() {
         ScriptCommand c = scene.text[scene.pc];
         if (c.getOperation() == Operation::CREATE) {
             for (int i = 0; i < c.getNumberOf(); i++) {
-                agents[counter]->profile_Name = c.getProfile().c_str();
-                agents[counter]->CurrentLocation = c.getRegionName().c_str();
-                // check if has model
-                if (c.gethasModel()) {
-                    agents[counter]->setNewModel(c.getModel().c_str());
-                    agents[counter]->modelName = c.getModel().c_str();
+                if (counter < agents.Num()) {
+                    agents[counter]->profile_Name = c.getProfile().c_str();
+                    agents[counter]->CurrentLocation = c.getRegionName().c_str();
+                    // check if has model
+                    if (c.gethasModel()) {
+                        agents[counter]->setNewModel(c.getModel().c_str());
+                        agents[counter]->modelName = c.getModel().c_str();
+                    }
+                    counter++;
+                
                 }
-                counter++;
             }
         }else if (c.getOperation() == Operation::WHEN) {
             FString condition = c.getRegionName().c_str();
@@ -428,6 +431,10 @@ void ACrowdController::BeginPlay() {
             conditionsEvents[condition].Add(*c.getEvent());
         }
         else { break; }
+        if (scene.pc + 1 >= scene.text.size()) {
+            scene.pc++;
+            break;
+        }
         scene.pc++;
     }
 }
@@ -449,10 +456,23 @@ int ACrowdController::get_LocationIndex(FString regionName) {
                 indexes.Add(j);
             }
         }
-        idx = indexes[FMath::RandRange(0, indexes.Num() - 1)];
+        if (indexes.Num()) {
+            idx = indexes[FMath::RandRange(0, indexes.Num() - 1)];
+        }
+        else {
+            UE_LOG(LogTemp, Warning, TEXT("RegionBox Not Found! : %s"), *regionName);
+            idx = get_LocationIndex("Random");
+        }
+        
     }
     else {
-        idx = Locais[regionName];
+        if (Locais.Contains(regionName)) {
+            idx = Locais[regionName];
+        }
+        else {
+            UE_LOG(LogTemp, Warning, TEXT("RegionBox Not Found! : %s"), *regionName);
+            idx = get_LocationIndex("Random");
+        }
     }
     return idx;
 }
@@ -532,11 +552,9 @@ void ACrowdController::Run_AgentBehaviour(AAgent* agent, float DeltaTime)  {
     bool isAgentFree = !agent->inAction && !agent->inAnim;
     
     if (agent->pc >= number_script_instructions && isAgentFree) {
-        //UE_LOG(LogTemp, Warning, TEXT("rodando agora: %s"), *agent->nowPlaying);
         Run_EndScript(agent);
     } 
     if (isAgentFree && agent->pc < number_script_instructions && agent->hasSomethingToPlay) {
-        //UE_LOG(LogTemp, Warning, TEXT("rodando agora: %s"), *agent->nowPlaying);
         Run_BehaviourOperation(agent);     
     }
     Run_EndAction(agent, DeltaTime);
@@ -690,7 +708,7 @@ void ACrowdController::Tick(float DeltaTime) {
     UNavigationSystemV1* navSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
     ARecastNavMesh* navMesh = navSys ? Cast<ARecastNavMesh>(navSys->GetDefaultNavDataInstance()) : nullptr;
     time += DeltaTime;
-    // play every fuction in main script (otimization - make a program counter to know wich command execute / cons program need to be in order of time)
+    // play every fuction in main script (otimization - make a program counter to know wich command execute / cons program need to be in order of time
     if (scene.pc < scene.text.size()) {
         while (scene.text[scene.pc].getTime() <= int(time)) {
             if (scene.pc < scene.text.size()) {
@@ -719,7 +737,7 @@ void ACrowdController::Tick(float DeltaTime) {
                                       200, FColor::Red, false);
         }*/
 
-        a->text->SetActorLocation(FVector(a->GetActorLocation().X, a->GetActorLocation().Y, a->GetActorLocation().Z + 200));
+        //a->text->SetActorLocation(FVector(a->GetActorLocation().X, a->GetActorLocation().Y, a->GetActorLocation().Z + 200));
         FVector vel = a->GetVelocity();
         float dist = FVector::Distance(a->GetActorLocation(), a->currTarget);
         if (dist < 5 || (FMath::Abs(vel.X) == 0 && FMath::Abs(vel.Y) == 0)) {
@@ -747,8 +765,8 @@ void ACrowdController::Tick(float DeltaTime) {
                 a->path.RemoveAt(0);
             } else {
                 if (a->ticks == 0) {
-                    a->text->GetTextRender()->SetText(FText::FromString(a->activity));
-                    a->text->GetTextRender()->SetTextRenderColor(FColor::Green);
+                    //a->text->GetTextRender()->SetText(FText::FromString(a->activity));
+                    //a->text->GetTextRender()->SetTextRenderColor(FColor::Green);
                     a->ticks++;
                 } else if (a->ticks >= a->duration) {
                     FBox q;

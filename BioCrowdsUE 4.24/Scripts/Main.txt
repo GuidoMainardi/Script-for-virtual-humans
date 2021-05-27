@@ -1,2 +1,3 @@
-Create 7 Agent in Kitchen
-All Agent time 2 run Walking
+Create 200 Walker in Random Hall
+When Walker in Halway9 All Walker loop Fire
+All Walker time 0 loop Walk
