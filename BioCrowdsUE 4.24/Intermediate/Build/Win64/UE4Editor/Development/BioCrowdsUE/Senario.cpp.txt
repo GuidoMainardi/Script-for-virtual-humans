@@ -1,3 +1,0 @@
-D:\TCC\Pojeto\Script-for-virtual-humans\BioCrowdsUE 4.24\Intermediate\Build\Win64\UE4Editor\Development\BioCrowdsUE\Definitions.BioCrowdsUE.h
-D:\TCC\Pojeto\Script-for-virtual-humans\BioCrowdsUE 4.24\Source\BioCrowdsUE\src\Senario.h
-D:\TCC\Pojeto\Script-for-virtual-humans\BioCrowdsUE 4.24\Intermediate\Build\Win64\UE4Editor\Inc\BioCrowdsUE\Senario.generated.h
