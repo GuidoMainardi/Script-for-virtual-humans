@@ -1,0 +1,5 @@
+Create 1 Agent in Room
+Create 2 Dancer as Macarena in Bedroom
+When Dancer in Room All Dancer loop Party
+Agent 1 time 3 run Tired
+All Dancer time 5 loop Walk

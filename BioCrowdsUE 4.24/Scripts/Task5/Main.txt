@@ -1,0 +1,4 @@
+Create 5 Person as Macarena in Hallway4
+Person 1 time 0 loop Capoeira
+Person 2 time 5 loop Capoeira
+Person 4 time 10 run Capoeira

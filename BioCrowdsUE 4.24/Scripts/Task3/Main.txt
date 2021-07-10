@@ -1,0 +1,3 @@
+Create 10 Person in Random Hall
+Person 1 time 2 loop Walk
+All Person time 10 loop Walk

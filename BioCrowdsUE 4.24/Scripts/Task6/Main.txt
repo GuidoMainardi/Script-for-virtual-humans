@@ -1,0 +1,5 @@
+Create 1 Shoopkeeper as Macarena in MainEntry9
+Create 1500 Buyer as Highlight in Random outside
+When Shoopkeeper in MallOffice All Buyer loop Move
+Shoopkeeper 1 time 0 loop Move
+Shoopkeeper 1 time 15 run MallOffice

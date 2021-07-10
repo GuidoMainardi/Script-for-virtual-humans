@@ -1,0 +1,3 @@
+Create 10 Buyer as Highlight in Random
+When Buyer in AlecrimCroche All Buyer loop Exit
+All Buyer time 0 loop Move
