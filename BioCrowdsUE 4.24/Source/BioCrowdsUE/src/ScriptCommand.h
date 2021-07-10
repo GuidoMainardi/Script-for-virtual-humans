@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <sstream>
 #include <vector>
+#include <time.h>
 #include "Target.h"
 #include "Operation.h"
 

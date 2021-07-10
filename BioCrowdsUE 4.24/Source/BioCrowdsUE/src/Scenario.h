@@ -5,7 +5,6 @@
 #include <vector>
 #include <iomanip>
 #include <fstream>
-#include <Windows.h>
 #include <map>
 #include "ScriptCommand.h"
 #include "Script.h"

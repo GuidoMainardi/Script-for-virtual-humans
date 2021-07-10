@@ -190,7 +190,7 @@ void ACrowdController::update(TArray<AAgent*> finished) {
          }*/
 
         //update pos
-        i->GetCharacterMovement()->MaxWalkSpeed =  200; //v.Size();
+        i->GetCharacterMovement()->MaxWalkSpeed =  100; //v.Size();
         i->currTarget = i->GetActorLocation() + v;
     }
 }
@@ -641,7 +641,7 @@ void ACrowdController::Run_EndAction(AAgent* agent, float DeltaTime) {
     if (FMath::Abs(vel.X) == 0 && FMath::Abs(vel.Y) == 0) {
         agent->waiting_time += DeltaTime;
     }
-    if (dist < 20 || agent->waiting_time > 1.f){
+    if (dist < 90 || agent->waiting_time > 3.f){
         if (agent->inAction) {
             agent->inAction = false;
         }
@@ -730,8 +730,8 @@ void ACrowdController::Tick(float DeltaTime) {
     TArray<AAgent*> afinished;
     TArray<AAgent*> finished;
     for (AAgent* a : agents) {
-        /*
-        if (a->showGoal) {
+        
+        /*if (a->showGoal) {
             DrawDebugDirectionalArrow(GetWorld(), FVector(a->GetActorLocation().X, a->GetActorLocation().Y, a->GetActorLocation().Z + 30),
                                       FVector(a->finalGoal.X, a->finalGoal.Y, a->finalGoal.Z + 30),
                                       200, FColor::Red, false);
